@@ -4,7 +4,7 @@
  preserveAspectRatio="xMidYMid meet">
 
 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
+fill="{{ fillColor }}" stroke="none">
 <path d="M3323 4723 c-12 -2 -34 -18 -49 -36 -21 -26 -25 -38 -21 -70 7 -51
 33 -77 84 -84 32 -4 44 0 70 21 57 48 46 133 -21 161 -20 8 -37 14 -38 14 -2
 -1 -13 -4 -25 -6z"/>
@@ -97,3 +97,13 @@ l-61 129 25 19 c126 98 348 230 520 309 103 47 486 181 541 189 4 1 -17 -35
 </g>
 </svg>
 </template>
+
+<script>
+    export default {
+        props: {
+            fillColor: {
+                default: 'black'
+            }
+        }
+    }
+</script>

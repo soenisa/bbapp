@@ -32778,6 +32778,27 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/ApplicationLogo.vue?vue&type=script&lang=js":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/ApplicationLogo.vue?vue&type=script&lang=js ***!
+  \*********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    fillColor: {
+      "default": 'black'
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Button.vue?vue&type=script&setup=true&lang=js":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Button.vue?vue&type=script&setup=true&lang=js ***!
@@ -33523,17 +33544,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _coreui_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @coreui/vue */ "./node_modules/@coreui/vue/dist/index.es.js");
 /* harmony import */ var _Components_ApplicationLogo_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/ApplicationLogo.vue */ "./resources/js/Components/ApplicationLogo.vue");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'AppSidebar',
+  components: {
+    BreezeApplicationLogo: _Components_ApplicationLogo_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.Link,
+    CIcon: _coreui_vue__WEBPACK_IMPORTED_MODULE_1__.CIcon
+  },
   setup: function setup() {
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
     return {
       sidebarUnfoldable: (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
         return store.state.sidebarUnfoldable;
@@ -33569,10 +33597,10 @@ var _hoisted_1 = {
   preserveAspectRatio: "xMidYMid meet"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<g transform=\"translate(0.000000,512.000000) scale(0.100000,-0.100000)\" fill=\"#000000\" stroke=\"none\"><path d=\"M3323 4723 c-12 -2 -34 -18 -49 -36 -21 -26 -25 -38 -21 -70 7 -51\n33 -77 84 -84 32 -4 44 0 70 21 57 48 46 133 -21 161 -20 8 -37 14 -38 14 -2\n-1 -13 -4 -25 -6z\"></path><path d=\"M2088 4617 c-126 -36 -218 -157 -218 -288 0 -112 91 -238 199 -274\n201 -66 403 87 388 295 -13 187 -192 316 -369 267z m143 -216 c53 -54 35 -138\n-36 -161 -95 -31 -167 89 -96 161 22 21 39 29 66 29 27 0 44 -8 66 -29z\"></path><path d=\"M4360 4490 c-450 -117 -719 -233 -1043 -449 -165 -109 -211 -150\n-232 -206 -23 -60 -16 -88 60 -247 79 -165 105 -242 105 -310 0 -88 -61 -158\n-139 -158 -42 0 -77 35 -145 146 -68 110 -135 191 -214 256 -115 94 -177 130\n-232 136 -46 4 -52 2 -86 -32 -37 -37 -37 -37 -30 -101 3 -36 9 -94 12 -129\nl6 -63 -43 -11 c-64 -16 -134 -65 -166 -114 -15 -24 -28 -45 -30 -47 -1 -2\n-45 22 -98 53 -118 69 -158 74 -200 24 -26 -31 -27 -36 -22 -108 14 -172 74\n-312 212 -496 61 -81 95 -134 95 -151 0 -68 -86 -131 -161 -119 -85 14 -130\n45 -274 192 -77 79 -153 148 -168 153 -76 29 -137 8 -288 -100 -334 -237 -594\n-514 -862 -919 -84 -127 -97 -155 -97 -205 0 -68 34 -107 103 -120 32 -6 53 1\n159 53 205 102 327 134 513 134 244 1 433 -72 651 -252 125 -103 138 -104 244\n-20 211 169 406 231 583 185 31 -8 102 -37 157 -65 55 -27 111 -50 124 -50 13\n0 62 18 108 40 216 103 325 73 609 -170 48 -41 96 -48 151 -21 92 44 102 117\n39 283 -64 166 -72 285 -27 392 9 21 56 79 106 131 49 51 90 101 90 112 0 10\n-7 50 -15 88 -30 142 -14 272 48 390 44 83 162 199 276 271 52 32 105 69 118\n81 27 26 30 68 8 130 -38 111 -68 297 -68 433 0 296 92 517 305 733 124 126\n142 162 111 224 -22 44 -73 73 -128 72 -22 0 -123 -22 -225 -49z m-46 -281\nc-184 -270 -249 -573 -198 -916 8 -58 13 -107 11 -109 -2 -2 -25 14 -50 36\n-56 50 -105 144 -114 220 -5 41 -13 62 -34 82 -53 53 -146 28 -164 -44 -9 -35\n20 -162 53 -232 35 -73 104 -160 161 -201 91 -65 89 -54 25 -105 -78 -62 -174\n-176 -218 -260 -43 -82 -86 -239 -86 -317 0 -52 -1 -53 -22 -42 -48 26 -130\n120 -161 186 -30 63 -32 77 -34 183 l-3 115 -31 29 c-27 24 -38 27 -72 23 -51\n-7 -77 -33 -88 -88 -22 -114 2 -254 63 -372 48 -91 146 -196 237 -252 34 -21\n61 -40 61 -42 0 -3 -13 -22 -28 -42 -48 -60 -80 -123 -96 -187 -20 -76 -20\n-219 -2 -299 8 -33 13 -61 12 -63 -2 -1 -34 16 -72 38 -163 96 -357 117 -504\n56 -12 -5 -19 10 -33 71 -32 144 -116 284 -221 372 -93 76 -256 137 -321 120\n-39 -11 -65 -46 -65 -90 0 -53 30 -85 97 -104 136 -40 221 -110 277 -228 18\n-40 37 -85 40 -101 6 -25 5 -28 -11 -21 -121 51 -271 65 -407 37 -93 -20 -115\n-29 -337 -140 -3 -1 -11 21 -18 50 -35 138 -139 277 -265 352 -74 44 -125 48\n-161 12 -54 -54 -38 -129 36 -167 60 -30 137 -106 165 -161 13 -26 24 -52 24\n-57 0 -5 -36 13 -81 40 -88 53 -200 99 -319 132 -62 17 -105 21 -255 21 -164\n1 -190 -2 -287 -26 -59 -15 -123 -34 -143 -42 -19 -8 -35 -13 -35 -10 0 11\n147 204 237 311 124 148 278 293 438 413 72 53 142 105 156 114 l26 17 99\n-107 c174 -188 293 -251 457 -242 62 3 94 11 132 30 130 67 202 204 175 335\n-12 54 -46 111 -143 237 -57 74 -122 185 -113 193 2 3 22 -7 44 -21 57 -36 85\n-40 126 -21 54 26 86 69 86 116 0 29 7 47 25 65 24 24 29 24 100 18 l74 -7 37\n37 37 37 -8 90 c-6 89 -6 90 14 80 29 -16 85 -87 176 -225 90 -135 137 -177\n222 -202 110 -32 233 6 319 98 70 75 89 125 89 238 0 117 -21 189 -108 373\nl-61 129 25 19 c126 98 348 230 520 309 103 47 486 181 541 189 4 1 -17 -35\n-48 -80z\"></path><path d=\"M3789 3825 c-33 -18 -53 -65 -44 -103 21 -100 169 -100 190 0 18 82\n-70 144 -146 103z\"></path><path d=\"M2689 3021 c-62 -62 -19 -161 71 -161 89 0 126 101 59 163 -41 38\n-90 37 -130 -2z\"></path><path d=\"M2432 2848 c-32 -9 -72 -56 -72 -86 0 -28 32 -80 56 -91 54 -24 104\n-9 129 39 20 39 19 72 -5 103 -26 33 -66 46 -108 35z\"></path><path d=\"M1344 2061 c-30 -13 -64 -59 -64 -88 0 -56 48 -103 105 -103 14 0 39\n13 57 29 27 24 33 36 33 70 0 67 -71 117 -131 92z\"></path><path d=\"M741 4517 c-70 -41 -66 -138 7 -173 66 -31 137 17 135 92 -2 67 -84\n114 -142 81z\"></path><path d=\"M2689 4201 c-21 -22 -29 -39 -29 -66 0 -82 105 -127 163 -70 42 42\n42 97 0 139 -37 38 -95 36 -134 -3z\"></path><path d=\"M1819 3725 c-83 -45 -46 -175 49 -175 98 0 135 110 58 172 -25 21\n-72 22 -107 3z\"></path><path d=\"M525 3616 c-32 -32 -40 -69 -25 -107 24 -56 36 -59 241 -59 l186 0\n27 26 c39 40 37 103 -5 138 -30 26 -31 26 -215 26 -182 0 -185 0 -209 -24z\"></path><path d=\"M1123 3622 c-49 -39 -49 -122 0 -157 33 -23 91 -19 124 9 23 20 28\n32 28 71 0 39 -5 51 -28 71 -34 29 -91 32 -124 6z\"></path><path d=\"M744 3334 c-70 -35 -70 -140 1 -172 40 -18 447 -17 484 2 56 29 66\n99 22 148 l-29 33 -224 3 c-186 2 -228 0 -254 -14z\"></path><path d=\"M4467 2830 c-66 -52 -27 -169 56 -170 97 -1 141 121 63 175 -30 22\n-89 19 -119 -5z\"></path><path d=\"M444 2741 c-59 -36 -65 -112 -12 -156 47 -40 116 -27 144 26 21 42\n17 75 -13 109 -36 39 -78 47 -119 21z\"></path><path d=\"M4202 2329 c-34 -16 -73 -45 -88 -62 -100 -118 -99 -284 2 -396 59\n-66 127 -95 219 -95 85 0 146 25 202 81 60 60 87 124 87 208 1 222 -225 363\n-422 264z m202 -201 c24 -26 27 -37 23 -71 -7 -51 -33 -77 -84 -84 -74 -10\n-127 63 -97 135 15 37 65 64 104 55 14 -3 38 -19 54 -35z\"></path><path d=\"M4284 1461 c-59 -36 -65 -112 -12 -156 47 -40 116 -27 144 26 21 42\n17 75 -13 109 -36 39 -78 47 -119 21z\"></path><path d=\"M1052 1049 c-70 -35 -105 -71 -140 -148 -33 -73 -29 -186 10 -252 61\n-102 150 -154 263 -153 120 1 212 62 263 173 114 248 -151 503 -396 380z m201\n-200 c81 -86 -41 -210 -131 -134 -17 14 -33 39 -37 55 -13 60 53 127 115 113\n14 -3 37 -18 53 -34z\"></path><path d=\"M2689 951 c-21 -22 -29 -39 -29 -66 0 -27 8 -44 29 -66 l29 -29 187\n0 187 0 29 29 c21 22 29 39 29 66 0 27 -8 44 -29 66 l-29 29 -187 0 -187 0\n-29 -29z\"></path><path d=\"M3279 951 c-78 -78 12 -197 114 -150 23 11 38 31 51 72 8 25 -18 83\n-42 96 -39 21 -91 13 -123 -18z\"></path><path d=\"M1717 959 c-26 -15 -46 -68 -40 -102 8 -39 57 -77 100 -77 49 0 93\n45 93 95 0 52 -44 95 -97 95 -21 0 -46 -5 -56 -11z\"></path><path d=\"M4117 876 c-100 -28 -177 -128 -177 -232 0 -97 45 -172 131 -219 222\n-120 457 142 316 352 -57 85 -170 127 -270 99z m94 -196 c29 -16 26 -67 -5\n-81 -34 -16 -66 3 -66 41 0 41 33 60 71 40z\"></path></g>", 1);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<g transform=\"translate(0.000000,512.000000) scale(0.100000,-0.100000)\" fill=\"{{ fillColor }}\" stroke=\"none\"><path d=\"M3323 4723 c-12 -2 -34 -18 -49 -36 -21 -26 -25 -38 -21 -70 7 -51\n33 -77 84 -84 32 -4 44 0 70 21 57 48 46 133 -21 161 -20 8 -37 14 -38 14 -2\n-1 -13 -4 -25 -6z\"></path><path d=\"M2088 4617 c-126 -36 -218 -157 -218 -288 0 -112 91 -238 199 -274\n201 -66 403 87 388 295 -13 187 -192 316 -369 267z m143 -216 c53 -54 35 -138\n-36 -161 -95 -31 -167 89 -96 161 22 21 39 29 66 29 27 0 44 -8 66 -29z\"></path><path d=\"M4360 4490 c-450 -117 -719 -233 -1043 -449 -165 -109 -211 -150\n-232 -206 -23 -60 -16 -88 60 -247 79 -165 105 -242 105 -310 0 -88 -61 -158\n-139 -158 -42 0 -77 35 -145 146 -68 110 -135 191 -214 256 -115 94 -177 130\n-232 136 -46 4 -52 2 -86 -32 -37 -37 -37 -37 -30 -101 3 -36 9 -94 12 -129\nl6 -63 -43 -11 c-64 -16 -134 -65 -166 -114 -15 -24 -28 -45 -30 -47 -1 -2\n-45 22 -98 53 -118 69 -158 74 -200 24 -26 -31 -27 -36 -22 -108 14 -172 74\n-312 212 -496 61 -81 95 -134 95 -151 0 -68 -86 -131 -161 -119 -85 14 -130\n45 -274 192 -77 79 -153 148 -168 153 -76 29 -137 8 -288 -100 -334 -237 -594\n-514 -862 -919 -84 -127 -97 -155 -97 -205 0 -68 34 -107 103 -120 32 -6 53 1\n159 53 205 102 327 134 513 134 244 1 433 -72 651 -252 125 -103 138 -104 244\n-20 211 169 406 231 583 185 31 -8 102 -37 157 -65 55 -27 111 -50 124 -50 13\n0 62 18 108 40 216 103 325 73 609 -170 48 -41 96 -48 151 -21 92 44 102 117\n39 283 -64 166 -72 285 -27 392 9 21 56 79 106 131 49 51 90 101 90 112 0 10\n-7 50 -15 88 -30 142 -14 272 48 390 44 83 162 199 276 271 52 32 105 69 118\n81 27 26 30 68 8 130 -38 111 -68 297 -68 433 0 296 92 517 305 733 124 126\n142 162 111 224 -22 44 -73 73 -128 72 -22 0 -123 -22 -225 -49z m-46 -281\nc-184 -270 -249 -573 -198 -916 8 -58 13 -107 11 -109 -2 -2 -25 14 -50 36\n-56 50 -105 144 -114 220 -5 41 -13 62 -34 82 -53 53 -146 28 -164 -44 -9 -35\n20 -162 53 -232 35 -73 104 -160 161 -201 91 -65 89 -54 25 -105 -78 -62 -174\n-176 -218 -260 -43 -82 -86 -239 -86 -317 0 -52 -1 -53 -22 -42 -48 26 -130\n120 -161 186 -30 63 -32 77 -34 183 l-3 115 -31 29 c-27 24 -38 27 -72 23 -51\n-7 -77 -33 -88 -88 -22 -114 2 -254 63 -372 48 -91 146 -196 237 -252 34 -21\n61 -40 61 -42 0 -3 -13 -22 -28 -42 -48 -60 -80 -123 -96 -187 -20 -76 -20\n-219 -2 -299 8 -33 13 -61 12 -63 -2 -1 -34 16 -72 38 -163 96 -357 117 -504\n56 -12 -5 -19 10 -33 71 -32 144 -116 284 -221 372 -93 76 -256 137 -321 120\n-39 -11 -65 -46 -65 -90 0 -53 30 -85 97 -104 136 -40 221 -110 277 -228 18\n-40 37 -85 40 -101 6 -25 5 -28 -11 -21 -121 51 -271 65 -407 37 -93 -20 -115\n-29 -337 -140 -3 -1 -11 21 -18 50 -35 138 -139 277 -265 352 -74 44 -125 48\n-161 12 -54 -54 -38 -129 36 -167 60 -30 137 -106 165 -161 13 -26 24 -52 24\n-57 0 -5 -36 13 -81 40 -88 53 -200 99 -319 132 -62 17 -105 21 -255 21 -164\n1 -190 -2 -287 -26 -59 -15 -123 -34 -143 -42 -19 -8 -35 -13 -35 -10 0 11\n147 204 237 311 124 148 278 293 438 413 72 53 142 105 156 114 l26 17 99\n-107 c174 -188 293 -251 457 -242 62 3 94 11 132 30 130 67 202 204 175 335\n-12 54 -46 111 -143 237 -57 74 -122 185 -113 193 2 3 22 -7 44 -21 57 -36 85\n-40 126 -21 54 26 86 69 86 116 0 29 7 47 25 65 24 24 29 24 100 18 l74 -7 37\n37 37 37 -8 90 c-6 89 -6 90 14 80 29 -16 85 -87 176 -225 90 -135 137 -177\n222 -202 110 -32 233 6 319 98 70 75 89 125 89 238 0 117 -21 189 -108 373\nl-61 129 25 19 c126 98 348 230 520 309 103 47 486 181 541 189 4 1 -17 -35\n-48 -80z\"></path><path d=\"M3789 3825 c-33 -18 -53 -65 -44 -103 21 -100 169 -100 190 0 18 82\n-70 144 -146 103z\"></path><path d=\"M2689 3021 c-62 -62 -19 -161 71 -161 89 0 126 101 59 163 -41 38\n-90 37 -130 -2z\"></path><path d=\"M2432 2848 c-32 -9 -72 -56 -72 -86 0 -28 32 -80 56 -91 54 -24 104\n-9 129 39 20 39 19 72 -5 103 -26 33 -66 46 -108 35z\"></path><path d=\"M1344 2061 c-30 -13 -64 -59 -64 -88 0 -56 48 -103 105 -103 14 0 39\n13 57 29 27 24 33 36 33 70 0 67 -71 117 -131 92z\"></path><path d=\"M741 4517 c-70 -41 -66 -138 7 -173 66 -31 137 17 135 92 -2 67 -84\n114 -142 81z\"></path><path d=\"M2689 4201 c-21 -22 -29 -39 -29 -66 0 -82 105 -127 163 -70 42 42\n42 97 0 139 -37 38 -95 36 -134 -3z\"></path><path d=\"M1819 3725 c-83 -45 -46 -175 49 -175 98 0 135 110 58 172 -25 21\n-72 22 -107 3z\"></path><path d=\"M525 3616 c-32 -32 -40 -69 -25 -107 24 -56 36 -59 241 -59 l186 0\n27 26 c39 40 37 103 -5 138 -30 26 -31 26 -215 26 -182 0 -185 0 -209 -24z\"></path><path d=\"M1123 3622 c-49 -39 -49 -122 0 -157 33 -23 91 -19 124 9 23 20 28\n32 28 71 0 39 -5 51 -28 71 -34 29 -91 32 -124 6z\"></path><path d=\"M744 3334 c-70 -35 -70 -140 1 -172 40 -18 447 -17 484 2 56 29 66\n99 22 148 l-29 33 -224 3 c-186 2 -228 0 -254 -14z\"></path><path d=\"M4467 2830 c-66 -52 -27 -169 56 -170 97 -1 141 121 63 175 -30 22\n-89 19 -119 -5z\"></path><path d=\"M444 2741 c-59 -36 -65 -112 -12 -156 47 -40 116 -27 144 26 21 42\n17 75 -13 109 -36 39 -78 47 -119 21z\"></path><path d=\"M4202 2329 c-34 -16 -73 -45 -88 -62 -100 -118 -99 -284 2 -396 59\n-66 127 -95 219 -95 85 0 146 25 202 81 60 60 87 124 87 208 1 222 -225 363\n-422 264z m202 -201 c24 -26 27 -37 23 -71 -7 -51 -33 -77 -84 -84 -74 -10\n-127 63 -97 135 15 37 65 64 104 55 14 -3 38 -19 54 -35z\"></path><path d=\"M4284 1461 c-59 -36 -65 -112 -12 -156 47 -40 116 -27 144 26 21 42\n17 75 -13 109 -36 39 -78 47 -119 21z\"></path><path d=\"M1052 1049 c-70 -35 -105 -71 -140 -148 -33 -73 -29 -186 10 -252 61\n-102 150 -154 263 -153 120 1 212 62 263 173 114 248 -151 503 -396 380z m201\n-200 c81 -86 -41 -210 -131 -134 -17 14 -33 39 -37 55 -13 60 53 127 115 113\n14 -3 37 -18 53 -34z\"></path><path d=\"M2689 951 c-21 -22 -29 -39 -29 -66 0 -27 8 -44 29 -66 l29 -29 187\n0 187 0 29 29 c21 22 29 39 29 66 0 27 -8 44 -29 66 l-29 29 -187 0 -187 0\n-29 -29z\"></path><path d=\"M3279 951 c-78 -78 12 -197 114 -150 23 11 38 31 51 72 8 25 -18 83\n-42 96 -39 21 -91 13 -123 -18z\"></path><path d=\"M1717 959 c-26 -15 -46 -68 -40 -102 8 -39 57 -77 100 -77 49 0 93\n45 93 95 0 52 -44 95 -97 95 -21 0 -46 -5 -56 -11z\"></path><path d=\"M4117 876 c-100 -28 -177 -128 -177 -232 0 -97 45 -172 131 -219 222\n-120 457 142 316 352 -57 85 -170 127 -270 99z m94 -196 c29 -16 26 -67 -5\n-81 -34 -16 -66 3 -66 41 0 41 33 60 71 40z\"></path></g>", 1);
 
 var _hoisted_3 = [_hoisted_2];
-function render(_ctx, _cache) {
+function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_1, _hoisted_3);
 }
 
@@ -34790,23 +34818,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" BBAPP ");
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
   "class": "nav-title"
 }, "Nav Title", -1
 /* HOISTED */
 );
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Nav item ");
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Nav item ");
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" With badge ");
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" With badge ");
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("NEW");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("NEW");
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Nav dropdown ");
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Nav dropdown item ");
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Nav dropdown ");
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Nav dropdown item ");
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Nav dropdown item ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeApplicationLogo = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeApplicationLogo");
@@ -34835,18 +34865,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CSidebarBrand, null, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeApplicationLogo, {
+            "class": "block h-9 w-auto fill-white"
+          }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
             href: _ctx.route('dashboard')
-          }, {
-            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeApplicationLogo, {
-                "class": "block h-9 w-auto"
-              })];
-            }),
-            _: 1
-            /* STABLE */
-
-          }, 8
+          }, null, 8
           /* PROPS */
           , ["href"])];
         }),
@@ -34855,14 +34878,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CSidebarNav, null, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CNavItem, {
+          return [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CNavItem, {
             href: "#"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CIcon, {
                 customClassName: "nav-icon",
                 icon: "cil-speedometer"
-              }), _hoisted_2];
+              }), _hoisted_3];
             }),
             _: 1
             /* STABLE */
@@ -34874,11 +34897,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CIcon, {
                 customClassName: "nav-icon",
                 icon: "cil-speedometer"
-              }), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CBadge, {
+              }), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CBadge, {
                 color: "primary ms-auto"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_4];
+                  return [_hoisted_5];
                 }),
                 _: 1
                 /* STABLE */
@@ -34893,7 +34916,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CIcon, {
                 customClassName: "nav-icon",
                 icon: "cil-puzzle"
-              }), _hoisted_5];
+              }), _hoisted_6];
             }),
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CNavItem, {
@@ -34903,7 +34926,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CIcon, {
                     customClassName: "nav-icon",
                     icon: "cil-puzzle"
-                  }), _hoisted_6];
+                  }), _hoisted_7];
                 }),
                 _: 1
                 /* STABLE */
@@ -34915,7 +34938,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CIcon, {
                     customClassName: "nav-icon",
                     icon: "cil-puzzle"
-                  }), _hoisted_7];
+                  }), _hoisted_8];
                 }),
                 _: 1
                 /* STABLE */
@@ -58016,12 +58039,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _ApplicationLogo_vue_vue_type_template_id_3ac4aa20__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ApplicationLogo.vue?vue&type=template&id=3ac4aa20 */ "./resources/js/Components/ApplicationLogo.vue?vue&type=template&id=3ac4aa20");
-/* harmony import */ var _Users_senisa_prsnl_bbapp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _ApplicationLogo_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ApplicationLogo.vue?vue&type=script&lang=js */ "./resources/js/Components/ApplicationLogo.vue?vue&type=script&lang=js");
+/* harmony import */ var _Users_senisa_prsnl_bbapp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
-const script = {}
+
+
 
 ;
-const __exports__ = /*#__PURE__*/(0,_Users_senisa_prsnl_bbapp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__["default"])(script, [['render',_ApplicationLogo_vue_vue_type_template_id_3ac4aa20__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Components/ApplicationLogo.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_senisa_prsnl_bbapp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_ApplicationLogo_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ApplicationLogo_vue_vue_type_template_id_3ac4aa20__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Components/ApplicationLogo.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -58506,6 +58531,22 @@ if (false) {}
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./resources/js/Components/ApplicationLogo.vue?vue&type=script&lang=js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/Components/ApplicationLogo.vue?vue&type=script&lang=js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ApplicationLogo_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ApplicationLogo_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ApplicationLogo.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/ApplicationLogo.vue?vue&type=script&lang=js");
+ 
 
 /***/ }),
 

@@ -1,8 +1,9 @@
 <template>
   <CSidebar visible>
   <CSidebarBrand>
+    <BreezeApplicationLogo class="block h-9 w-auto fill-white" />
+    BBAPP
     <Link :href="route('dashboard')">
-        <BreezeApplicationLogo class="block h-9 w-auto" />
     </Link>
   </CSidebarBrand>
   <CSidebarNav>
@@ -37,9 +38,15 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { CSidebar, CSidebarBrand, CSidebarNav, CNavItem, CIcon, CBadge, CNavGroup, CSidebarToggler } from '@coreui/vue';
 import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue';
+import { Link } from '@inertiajs/inertia-vue3';
 
 export default {
   name: 'AppSidebar',
+  components: {
+    BreezeApplicationLogo,
+    Link,
+    CIcon
+  },
   setup() {
     const store = useStore()
     return {
