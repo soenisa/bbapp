@@ -2,13 +2,14 @@
 import { CContainer, CFooter } from '@coreui/vue';
 import AppSidebar from '@/components/AppSidebar.vue';
 import AppHeader from '@/components/AppHeader.vue';
+import AppFooter from '@/components/AppFooter.vue';
 
 export default {
   name: 'DefaultLayout',
   components: {
     AppSidebar,
     AppHeader,
-    CFooter,
+    AppFooter,
     CContainer,
   },
 }
@@ -27,7 +28,7 @@ export default {
           </main>
         </CContainer>
       </div>
-      <CFooter />
+      <AppFooter />
     </div>
   </div>
 </template>
