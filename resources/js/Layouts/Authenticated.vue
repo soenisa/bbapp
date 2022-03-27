@@ -1,13 +1,14 @@
 <script>
-import { CContainer, CHeader, CFooter } from '@coreui/vue';
+import { CContainer, CFooter } from '@coreui/vue';
 import AppSidebar from '@/components/AppSidebar.vue';
+import AppHeader from '@/components/AppHeader.vue';
 
 export default {
   name: 'DefaultLayout',
   components: {
     AppSidebar,
+    AppHeader,
     CFooter,
-    CHeader,
     CContainer,
   },
 }
@@ -16,8 +17,8 @@ export default {
 <template>
   <div class="d-flex">
     <AppSidebar />
-    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-      <CHeader />
+    <div class="wrapper d-flex flex-column flex-1 min-vh-100 bg-light">
+      <AppHeader />
       <div class="body flex-grow-1 px-3">
         <CContainer lg>
           <main>

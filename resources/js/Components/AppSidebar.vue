@@ -1,6 +1,10 @@
 <template>
   <CSidebar visible>
-  <CSidebarBrand>Sidebar Brand</CSidebarBrand>
+  <CSidebarBrand>
+    <Link :href="route('dashboard')">
+        <BreezeApplicationLogo class="block h-9 w-auto" />
+    </Link>
+  </CSidebarBrand>
   <CSidebarNav>
     <li class="nav-title">Nav Title</li>
     <CNavItem href="#">
@@ -32,10 +36,10 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { CSidebar, CSidebarBrand, CSidebarNav, CNavItem, CIcon, CBadge, CNavGroup, CSidebarToggler } from '@coreui/vue';
+import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue';
+
 export default {
   name: 'AppSidebar',
-  components: {
-  },
   setup() {
     const store = useStore()
     return {
