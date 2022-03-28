@@ -14,4 +14,5 @@ class Transaction extends Model
     const CATEGORY_PAPA_SUPPORT = 'Papa Suport';
     const CATEGORY_PHONE = 'Phone';
     const CATEGORY_BANK_FEES = 'Bank Fees';
+    const CATEGORY_INCOME = 'Income';
 }

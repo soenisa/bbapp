@@ -22,7 +22,7 @@ export default {
       <AppHeader />
       <div class="body flex-grow-1 px-3">
         <CContainer lg>
-          <main>
+          <main class="pt-8" >
             <!-- not sure if I need this: <router-view /> -->
             <slot />
           </main>

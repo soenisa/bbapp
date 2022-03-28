@@ -16,7 +16,20 @@ class TransactionSeeder extends Seeder
     public function run()
     {
         Transaction::factory()
-            ->count(100)
+            ->count(50)
             ->create();
+        Transaction::factory()
+            ->create([
+                'category' => Transaction::CATEGORY_INCOME,
+                'amount' => 500
+            ]);
+        Transaction::factory()
+            ->count(50)
+            ->create();
+        Transaction::factory()
+            ->create([
+                'category' => Transaction::CATEGORY_INCOME,
+                'amount' => 500
+            ]);
     }
 }
