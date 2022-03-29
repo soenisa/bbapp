@@ -18,7 +18,7 @@ class TransactionFactory extends Factory
      */
     public function definition()
     {
-        $date = $this->faker->dateTimeBetween('-1 month, +1 month');
+        $date = $this->faker->dateTimeBetween('-1 month', '+1 month');
         return [
             'name' => $this->faker->word(),
             'amount' => $this->faker->randomFloat(2, -100, 100),

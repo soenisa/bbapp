@@ -1,7 +1,7 @@
 <template>
     <div>
-        <CCardText>
-            Total spent: {{ total }}
+        <CCardText class="fw-bold">
+            Total spent: ${{ total }}
         </CCardText>
         <CTable striped>
             <CTableHead>
@@ -17,23 +17,24 @@
                 <CTableRow v-for="transaction in transactions" :key="transaction.id">
                     <CTableHeaderCell scope="row">{{ transaction.id }}</CTableHeaderCell>
                     <CTableDataCell>{{ transaction.name }}</CTableDataCell>
-                    <CTableDataCell v-bind:class="amountClass">{{ formatAmount(transaction.amount ?? 0) }}</CTableDataCell>
+                    <CTableDataCell class="fw-bold font-monospace" v-bind:class="amountClass(transaction.amount)">{{ formatAmount(transaction.amount ?? 0) }}</CTableDataCell>
                     <CTableDataCell>{{ transaction.category }}</CTableDataCell>
-                    <CTableDataCell>{{ transaction.created_at }}</CTableDataCell>
+                    <CTableDataCell>{{ formatDate(transaction.created_at) }}</CTableDataCell>
                 </CTableRow>
             </CTableBody>
         </CTable>
     </div>
 </template>
 
-<style scoped>
-.positive {
-    color: success
+<style>
+.prewrapped {
+    white-space: pre-wrap;
 }
 </style>
 
 <script>
 import { CTable, CTableBody, CTableRow, CTableDataCell, CTableHeaderCell, CTableHead,  } from '@coreui/vue';
+import moment from 'moment';
 
 export default {
     name: "TransactionsTable",
@@ -49,15 +50,10 @@ export default {
             total: 0
         };
     },
-    computed: {
-        amountClass: function(amount) {
-            return {
-                positive: amount > 0,
-                negative: amount < 0
-            };
-        }
-    },
     methods: {
+        formatDate: (date) => { 
+            return moment(date).format('ddd, D MMM yyyy')
+        },
         getAllTransactions: function() {
             console.log('calling transactions..');
             axios.get(route('transactions.index'))
@@ -66,10 +62,17 @@ export default {
                     this.total = this.transactions.reduce( function(a, b){
                         return a + parseFloat(b.amount);
                     }, 0);
+                    this.total = this.total.toFixed(2);
                 });
         },
         formatAmount: function(amount) {
-            return `${amount < 0 ? '-' : ''}$${Math.abs(amount)}`;
+            return `${amount < 0 ? '-' : ' '}$${Math.abs(amount).toFixed(2)}`;
+        },
+        amountClass: function(amount) {
+            return {
+                'text-success prewrapped ': amount > 0,
+                'text-danger': amount < 0
+            };
         }
     }
 }

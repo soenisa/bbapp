@@ -11,7 +11,7 @@ class Transaction extends Model
 
     const CATEGORY_RENT = 'Rent';
     const CATEGORY_INTERNET = 'Internet';
-    const CATEGORY_PAPA_SUPPORT = 'Papa Suport';
+    const CATEGORY_PAPA_SUPPORT = 'Papa Support';
     const CATEGORY_PHONE = 'Phone';
     const CATEGORY_BANK_FEES = 'Bank Fees';
     const CATEGORY_INCOME = 'Income';
