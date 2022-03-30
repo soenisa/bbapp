@@ -15,4 +15,16 @@ class Transaction extends Model
     const CATEGORY_PHONE = 'Phone';
     const CATEGORY_BANK_FEES = 'Bank Fees';
     const CATEGORY_INCOME = 'Income';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'category',
+        'amount',
+        'created_at',
+    ];
 }

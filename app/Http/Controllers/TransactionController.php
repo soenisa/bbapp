@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Resources\TransactionCollection;
 use App\Http\Resources\TransactionResource;
 use App\Models\Transaction;
+use App\Services\TransactionImportService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class TransactionController extends Controller
 {
@@ -83,5 +86,30 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         //
+    }
+
+    /**
+     * Import a file to parse and insert transactions.
+     */
+    public function import(Request $request) {
+        $file = $request->file('transactionData');
+        if($file->extension() !== 'csv') {
+            return $this->errorResponse(Response::HTTP_BAD_REQUEST, 'file must be a csv');
+        }
+        Log::info($file);
+
+        $service = resolve(TransactionImportService::class);
+        $service($file);
+    }
+
+    private function errorResponse (int $statusCode, $message)
+    {
+        return $this->response([
+            'error' => [
+                'status_code' => $statusCode,
+                'message' => $message,
+            ]
+        ]);
+
     }
 }
