@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Log;
 
 class TransactionController extends Controller
 {
+    protected const INPUT_TRANSACTION_DATA = 'transaction_data';
+
     /**
      * Display a listing of the resource.
      *
@@ -92,7 +94,7 @@ class TransactionController extends Controller
      * Import a file to parse and insert transactions.
      */
     public function import(Request $request) {
-        $file = $request->file('transactionData');
+        $file = $request->file($this::INPUT_TRANSACTION_DATA);
         if($file->extension() !== 'csv') {
             return $this->errorResponse(Response::HTTP_BAD_REQUEST, 'file must be a csv');
         }

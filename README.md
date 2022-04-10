@@ -3,6 +3,10 @@
 ## About
 BBAPP is a personal spending application that I built to track my own spending instead of using 1 Google Sheet that I copy every year.
 
+## Getting started
+Run `sail up` to start all docker containers.
+
+Run `sail artisan...` to run artisan commands within the main container.
 
 ## Credits
 * CoreUI
