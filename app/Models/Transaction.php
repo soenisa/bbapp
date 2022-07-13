@@ -27,4 +27,20 @@ class Transaction extends Model
         'amount',
         'created_at',
     ];
+
+    public static function createEntry($attributes = []) {
+        // if name matches a category, use it
+        if (in_array($attributes['name'], [
+            static::CATEGORY_RENT,
+            static::CATEGORY_INTERNET,
+            static::CATEGORY_PAPA_SUPPORT,
+            static::CATEGORY_PHONE,
+            static::CATEGORY_BANK_FEES,
+            static::CATEGORY_INCOME,
+        ])) {
+            $attributes['category'] = $attributes['name'];
+        }
+
+        return self::create($attributes);
+    }
 }

@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Exceptions\TransactionImportException;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use SplFileObject;
@@ -17,22 +19,33 @@ class TransactionImportService
      * date, name, amount
      */
     public function __invoke(UploadedFile $file) {
+        Log::info(vsprintf('Starting import of file %s', [$file]));
 
-        Log::info('gello');
+        DB::beginTransaction();
         try {
             $openCsv = $file->openFile();
             $openCsv->setFlags(SplFileObject::READ_CSV);
-            foreach ($openCsv as $index=>$row) {
-                Log::info('line ' . $index);
+            $index = 0;
+            foreach ($openCsv as $row) {
                 list($date, $name, $amount) = $row;
-                Transaction::create([
+                Transaction::createEntry([
                     'name' => $name, 
-                    'amount' => $amount,
-                    'created_at' => Carbon::createFromFormat('d/m/Y', $date), 
+                    'amount' => str_replace(',', '', $amount),
+                    'created_at' => Carbon::createFromFormat('m/d/Y', $date)->startOfDay(),
                 ]);
+                $index++;
             }
+            Db::commit();
         } catch (Exception $e) {
-            Log::error('[TransctionUploadService]: Failed to create Transaction entries: ' . $e->getMessage(), ['error' => $e]);
+            Log::error('[TransctionUploadService] Rolling back...');
+            Db::rollBack();
+            throw new TransactionImportException(
+                vsprintf('Failed to import transactions on line %s.', [$index]),
+                0,
+                $e
+            );
         }
+
+        Log::info(vsprintf('Completed import of file %s', [$file]));
     }
 }

@@ -33162,12 +33162,12 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("transaction_data", this.FILE, this.FILE.name);
       axios.post(route("transactions.import"), formData).then(function (res) {
         //Perform Success Action
-        _this.showFailureAlert = true;
-        _this.showSuccessAlert = false;
-      })["catch"](function (error) {
-        // error.response.status Check status code
         _this.showFailureAlert = false;
         _this.showSuccessAlert = true;
+      })["catch"](function (error) {
+        // error.response.status Check status code
+        _this.showFailureAlert = true;
+        _this.showSuccessAlert = false;
       })["finally"](function () {//Perform action in always
       });
     }

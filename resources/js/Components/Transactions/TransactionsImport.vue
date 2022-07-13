@@ -42,13 +42,13 @@ export default {
         .post(route("transactions.import"), formData)
         .then((res) => {
           //Perform Success Action
-          this.showFailureAlert = true;
-          this.showSuccessAlert = false;
+          this.showFailureAlert = false;
+          this.showSuccessAlert = true;
         })
         .catch((error) => {
           // error.response.status Check status code
-          this.showFailureAlert = false;
-          this.showSuccessAlert = true;
+          this.showFailureAlert = true;
+          this.showSuccessAlert = false;
         })
         .finally(() => {
           //Perform action in always
