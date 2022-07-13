@@ -19,4 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('transactions', TransactionController::class);
+Route::prefix('transactions')
+->group(function() {
+    Route::post('import', [TransactionController::class, 'import'])->name('transactions.import');
+});
+
+// resource controllers
+Route::apiResource('transactions', TransactionController::class);
