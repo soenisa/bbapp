@@ -6,6 +6,7 @@ use App\Http\Resources\TransactionCollection;
 use App\Http\Resources\TransactionResource;
 use App\Models\Transaction;
 use App\Services\TransactionImportService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
@@ -19,9 +20,27 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return TransactionResource::collection(Transaction::all()->sortByDesc('created_at'));
+        $fromDate = $request->input('fromDate', null);
+        $toDate = $request->input('toDate', null);
+
+        if (empty($startDate) && empty($endDate)) {
+            $transactions = Transaction::all()->sortByDesc('created_at');
+
+        } else {
+            $transactions = Transaction::query();
+
+            if (isset($fromDate)) {
+                $transactions = $transactions->where('created_at', '>=', $fromDate);
+            }
+            if (isset($toDate)) {
+                $transactions = $transactions->where('created_at', '<=', $toDate);
+            }
+            $transactions = $transactions->sortByDesc('created_at')->get();
+        }
+
+        return TransactionResource::collection($transactions);
     }
 
     /**

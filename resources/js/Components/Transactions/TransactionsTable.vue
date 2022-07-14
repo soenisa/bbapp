@@ -3,6 +3,19 @@
         <CCardText class="fw-bold">
             Total spent: ${{ total }}
         </CCardText>
+        <CForm>
+            <div class="col-auto">
+                <CFormLabel for="filterStartDate">Start Date</CFormLabel>
+                <CFormInput type="date" id="filterStartDate" placeholder="name@example.com" aria-describedby="filterStartDate" />
+            </div>
+            <div class="col-auto">
+                <CFormLabel for="filterEndDate">End Date</CFormLabel>
+                <CFormInput type="date" id="filterEndDate" placeholder="name@example.com" aria-describedby="filterEndDate" />
+            </div>
+            <div class="col-auto">
+                <CButton type="submit" color="primary" class="mb-3">Submit</CButton>
+            </div>
+        </CForm>
         <CTable striped>
             <CTableHead>
                 <CTableRow>
