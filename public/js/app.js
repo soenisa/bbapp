@@ -33198,23 +33198,29 @@ __webpack_require__.r(__webpack_exports__);
     CTable: _coreui_vue__WEBPACK_IMPORTED_MODULE_0__.CTable
   },
   mounted: function mounted() {
-    this.getAllTransactions();
+    this.getTransactions();
   },
   data: function data() {
     return {
       transactions: [],
-      total: 0
+      total: 0,
+      fromDate: null,
+      toDate: null
     };
   },
   methods: {
     formatDate: function formatDate(date) {
       return moment__WEBPACK_IMPORTED_MODULE_1___default()(date).format('ddd, D MMM yyyy');
     },
-    getAllTransactions: function getAllTransactions() {
+    getTransactions: function getTransactions() {
       var _this = this;
 
-      console.log('calling transactions..');
-      axios.get(route('transactions.index')).then(function (response) {
+      axios.get(route('transactions.index'), {
+        params: {
+          fromDate: this.fromDate,
+          toDate: this.toDate
+        }
+      }).then(function (response) {
         _this.transactions = response.data.data;
         _this.total = _this.transactions.reduce(function (a, b) {
           return a + parseFloat(b.amount);
@@ -34223,7 +34229,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CForm, null, {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CForm, {
+    onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.getTransactions, ["prevent"])
+  }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CFormLabel, {
         "for": "filterStartDate"
@@ -34238,8 +34246,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "date",
         id: "filterStartDate",
         placeholder: "name@example.com",
-        "aria-describedby": "filterStartDate"
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CFormLabel, {
+        "aria-describedby": "filterStartDate",
+        modelValue: _ctx.fromDate,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+          return _ctx.fromDate = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CFormLabel, {
         "for": "filterEndDate"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -34252,8 +34266,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "date",
         id: "filterEndDate",
         placeholder: "name@example.com",
-        "aria-describedby": "filterEndDate"
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CButton, {
+        "aria-describedby": "filterEndDate",
+        modelValue: _ctx.toDate,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return _ctx.toDate = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CButton, {
         type: "submit",
         color: "primary",
         "class": "mb-3"
@@ -34269,7 +34289,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CTable, {
+  }, 8
+  /* PROPS */
+  , ["onSubmit"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CTable, {
     striped: ""
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

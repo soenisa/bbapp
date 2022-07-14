@@ -3,14 +3,14 @@
         <CCardText class="fw-bold">
             Total spent: ${{ total }}
         </CCardText>
-        <CForm>
+        <CForm @submit.prevent="getTransactions">
             <div class="col-auto">
                 <CFormLabel for="filterStartDate">Start Date</CFormLabel>
-                <CFormInput type="date" id="filterStartDate" placeholder="name@example.com" aria-describedby="filterStartDate" />
+                <CFormInput type="date" id="filterStartDate" placeholder="name@example.com" aria-describedby="filterStartDate" v-model="fromDate"/>
             </div>
             <div class="col-auto">
                 <CFormLabel for="filterEndDate">End Date</CFormLabel>
-                <CFormInput type="date" id="filterEndDate" placeholder="name@example.com" aria-describedby="filterEndDate" />
+                <CFormInput type="date" id="filterEndDate" placeholder="name@example.com" aria-describedby="filterEndDate" v-model="toDate"/>
             </div>
             <div class="col-auto">
                 <CButton type="submit" color="primary" class="mb-3">Submit</CButton>
@@ -55,21 +55,27 @@ export default {
         CTable
     },
     mounted: function() {
-        this.getAllTransactions();
+        this.getTransactions();
     },
     data: function () {
         return {
             transactions: [],
-            total: 0
+            total: 0,
+            fromDate: null,
+            toDate: null
         };
     },
     methods: {
         formatDate: (date) => { 
             return moment(date).format('ddd, D MMM yyyy')
         },
-        getAllTransactions: function() {
-            console.log('calling transactions..');
-            axios.get(route('transactions.index'))
+        getTransactions: function() {
+            axios.get(route('transactions.index'), {
+                        params: {
+                            fromDate: this.fromDate,
+                            toDate: this.toDate
+                        }
+                })
                 .then(response => {
                     this.transactions = response.data.data;
                     this.total = this.transactions.reduce( function(a, b){
@@ -86,7 +92,7 @@ export default {
                 'text-success prewrapped ': amount > 0,
                 'text-danger': amount < 0
             };
-        }
+        },
     }
 }
 </script>

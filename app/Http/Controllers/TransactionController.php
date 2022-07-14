@@ -23,9 +23,12 @@ class TransactionController extends Controller
     public function index(Request $request)
     {
         $fromDate = $request->input('fromDate', null);
+        $fromDate = empty($fromDate) ? $fromDate : Carbon::createFromFormat('Y-m-d', $fromDate)->startOfDay();
         $toDate = $request->input('toDate', null);
-
-        if (empty($startDate) && empty($endDate)) {
+        $toDate = empty($toDate) ? $toDate : Carbon::createFromFormat('Y-m-d', $toDate)->endOfDay();
+        
+        Log::info('fromDate ' . $fromDate . ' toDate ' . $toDate);
+        if (empty($fromDate) && empty($toDate)) {
             $transactions = Transaction::all()->sortByDesc('created_at');
 
         } else {
@@ -37,7 +40,7 @@ class TransactionController extends Controller
             if (isset($toDate)) {
                 $transactions = $transactions->where('created_at', '<=', $toDate);
             }
-            $transactions = $transactions->sortByDesc('created_at')->get();
+            $transactions = $transactions->orderByDesc('created_at')->get();
         }
 
         return TransactionResource::collection($transactions);
