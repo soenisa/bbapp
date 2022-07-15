@@ -1,29 +1,44 @@
 <template>
-    <div>
-        <CCardText class="fw-bold">
+    <div class="flex justify-between">
+        <CCardText class="fw-bold align-self-end">
             Total spent: ${{ total }}
         </CCardText>
-        <CTable striped>
-            <CTableHead>
-                <CTableRow>
-                <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                <CTableHeaderCell scope="col">Name</CTableHeaderCell>
-                <CTableHeaderCell scope="col">Amount</CTableHeaderCell>
-                <CTableHeaderCell scope="col">Category</CTableHeaderCell>
-                <CTableHeaderCell scope="col">Created At</CTableHeaderCell>
-                </CTableRow>
-            </CTableHead>
-            <CTableBody>
-                <CTableRow v-for="transaction in transactions" :key="transaction.id">
-                    <CTableHeaderCell scope="row">{{ transaction.id }}</CTableHeaderCell>
-                    <CTableDataCell>{{ transaction.name }}</CTableDataCell>
-                    <CTableDataCell class="fw-bold font-monospace" v-bind:class="amountClass(transaction.amount)">{{ formatAmount(transaction.amount ?? 0) }}</CTableDataCell>
-                    <CTableDataCell>{{ transaction.category }}</CTableDataCell>
-                    <CTableDataCell>{{ formatDate(transaction.created_at) }}</CTableDataCell>
-                </CTableRow>
-            </CTableBody>
-        </CTable>
+        <div>
+            <CForm @submit.prevent="getTransactions">
+                <div class="flex flex-row justify-end gap-x-10">
+                    <div>
+                        <CFormLabel for="filterStartDate">Start Date</CFormLabel>
+                        <CFormInput type="date" id="filterStartDate" placeholder="name@example.com" aria-describedby="filterStartDate" v-model="fromDate"/>
+                    </div>
+                    <div>
+                        <CFormLabel for="filterEndDate">End Date</CFormLabel>
+                        <CFormInput type="date" id="filterEndDate" placeholder="name@example.com" aria-describedby="filterEndDate" v-model="toDate"/>
+                    </div>
+                    <CButton class="align-self-end" type="submit" color="primary" style="height: 38px;">Submit</CButton>
+                </div>
+            </CForm>
+        </div>
     </div>
+    <CTable striped>
+        <CTableHead>
+            <CTableRow>
+            <CTableHeaderCell scope="col">#</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Name</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Amount</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Category</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Created At</CTableHeaderCell>
+            </CTableRow>
+        </CTableHead>
+        <CTableBody>
+            <CTableRow v-for="transaction in transactions" :key="transaction.id">
+                <CTableHeaderCell scope="row">{{ transaction.id }}</CTableHeaderCell>
+                <CTableDataCell>{{ transaction.name }}</CTableDataCell>
+                <CTableDataCell class="fw-bold font-monospace" v-bind:class="amountClass(transaction.amount)">{{ formatAmount(transaction.amount ?? 0) }}</CTableDataCell>
+                <CTableDataCell>{{ transaction.category }}</CTableDataCell>
+                <CTableDataCell>{{ formatDate(transaction.created_at) }}</CTableDataCell>
+            </CTableRow>
+        </CTableBody>
+    </CTable>
 </template>
 
 <style>
@@ -42,21 +57,27 @@ export default {
         CTable
     },
     mounted: function() {
-        this.getAllTransactions();
+        this.getTransactions();
     },
     data: function () {
         return {
             transactions: [],
-            total: 0
+            total: 0,
+            fromDate: null,
+            toDate: null
         };
     },
     methods: {
         formatDate: (date) => { 
             return moment(date).format('ddd, D MMM yyyy')
         },
-        getAllTransactions: function() {
-            console.log('calling transactions..');
-            axios.get(route('transactions.index'))
+        getTransactions: function() {
+            axios.get(route('transactions.index'), {
+                        params: {
+                            fromDate: this.fromDate,
+                            toDate: this.toDate
+                        }
+                })
                 .then(response => {
                     this.transactions = response.data.data;
                     this.total = this.transactions.reduce( function(a, b){
@@ -73,7 +94,7 @@ export default {
                 'text-success prewrapped ': amount > 0,
                 'text-danger': amount < 0
             };
-        }
+        },
     }
 }
 </script>

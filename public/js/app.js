@@ -33198,23 +33198,29 @@ __webpack_require__.r(__webpack_exports__);
     CTable: _coreui_vue__WEBPACK_IMPORTED_MODULE_0__.CTable
   },
   mounted: function mounted() {
-    this.getAllTransactions();
+    this.getTransactions();
   },
   data: function data() {
     return {
       transactions: [],
-      total: 0
+      total: 0,
+      fromDate: null,
+      toDate: null
     };
   },
   methods: {
     formatDate: function formatDate(date) {
       return moment__WEBPACK_IMPORTED_MODULE_1___default()(date).format('ddd, D MMM yyyy');
     },
-    getAllTransactions: function getAllTransactions() {
+    getTransactions: function getTransactions() {
       var _this = this;
 
-      console.log('calling transactions..');
-      axios.get(route('transactions.index')).then(function (response) {
+      axios.get(route('transactions.index'), {
+        params: {
+          fromDate: this.fromDate,
+          toDate: this.toDate
+        }
+      }).then(function (response) {
         _this.transactions = response.data.data;
         _this.total = _this.transactions.reduce(function (a, b) {
           return a + parseFloat(b.amount);
@@ -34161,19 +34167,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = {
+  "class": "flex justify-between"
+};
+var _hoisted_2 = {
+  "class": "flex flex-row justify-end gap-x-10"
+};
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("#");
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Start Date");
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Name");
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("End Date");
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Amount");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Submit");
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Category");
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("#");
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Created At");
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Name");
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Amount");
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Category");
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Created At");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_CCardText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CCardText");
+
+  var _component_CFormLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CFormLabel");
+
+  var _component_CFormInput = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CFormInput");
+
+  var _component_CButton = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CButton");
+
+  var _component_CForm = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CForm");
 
   var _component_CTableHeaderCell = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CTableHeaderCell");
 
@@ -34187,8 +34213,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_CTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CTable");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CCardText, {
-    "class": "fw-bold"
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CCardText, {
+    "class": "fw-bold align-self-end"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Total spent: $" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.total), 1
@@ -34198,7 +34224,72 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CTable, {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CForm, {
+    onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.getTransactions, ["prevent"])
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CFormLabel, {
+        "for": "filterStartDate"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_3];
+        }),
+        _: 1
+        /* STABLE */
+
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CFormInput, {
+        type: "date",
+        id: "filterStartDate",
+        placeholder: "name@example.com",
+        "aria-describedby": "filterStartDate",
+        modelValue: _ctx.fromDate,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+          return _ctx.fromDate = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CFormLabel, {
+        "for": "filterEndDate"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_4];
+        }),
+        _: 1
+        /* STABLE */
+
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CFormInput, {
+        type: "date",
+        id: "filterEndDate",
+        placeholder: "name@example.com",
+        "aria-describedby": "filterEndDate",
+        modelValue: _ctx.toDate,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return _ctx.toDate = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CButton, {
+        "class": "align-self-end",
+        type: "submit",
+        color: "primary",
+        style: {
+          "height": "38px"
+        }
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_5];
+        }),
+        _: 1
+        /* STABLE */
+
+      })])];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["onSubmit"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CTable, {
     striped: ""
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -34210,7 +34301,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 scope: "col"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_1];
+                  return [_hoisted_6];
                 }),
                 _: 1
                 /* STABLE */
@@ -34219,7 +34310,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 scope: "col"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_2];
+                  return [_hoisted_7];
                 }),
                 _: 1
                 /* STABLE */
@@ -34228,7 +34319,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 scope: "col"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_3];
+                  return [_hoisted_8];
                 }),
                 _: 1
                 /* STABLE */
@@ -34237,7 +34328,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 scope: "col"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_4];
+                  return [_hoisted_9];
                 }),
                 _: 1
                 /* STABLE */
@@ -34246,7 +34337,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 scope: "col"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_5];
+                  return [_hoisted_10];
                 }),
                 _: 1
                 /* STABLE */
@@ -34349,7 +34440,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]);
+  })], 64
+  /* STABLE_FRAGMENT */
+  );
 }
 
 /***/ }),
