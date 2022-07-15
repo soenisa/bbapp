@@ -26,24 +26,21 @@ class TransactionController extends Controller
         $fromDate = empty($fromDate) ? $fromDate : Carbon::createFromFormat('Y-m-d', $fromDate)->startOfDay();
         $toDate = $request->input('toDate', null);
         $toDate = empty($toDate) ? $toDate : Carbon::createFromFormat('Y-m-d', $toDate)->endOfDay();
+        $category = $request->input('category', null);
         
-        Log::info('fromDate ' . $fromDate . ' toDate ' . $toDate);
-        if (empty($fromDate) && empty($toDate)) {
-            $transactions = Transaction::all()->sortByDesc('created_at');
+        $transactions = Transaction::query();
 
-        } else {
-            $transactions = Transaction::query();
-
-            if (isset($fromDate)) {
-                $transactions = $transactions->where('created_at', '>=', $fromDate);
-            }
-            if (isset($toDate)) {
-                $transactions = $transactions->where('created_at', '<=', $toDate);
-            }
-            $transactions = $transactions->orderByDesc('created_at')->get();
+        if (isset($fromDate)) {
+            $transactions = $transactions->where('created_at', '>=', $fromDate);
+        }
+        if (isset($toDate)) {
+            $transactions = $transactions->where('created_at', '<=', $toDate);
+        }
+        if (isset($category)) {
+            $transactions = $transactions->where('category', $category);
         }
 
-        return TransactionResource::collection($transactions);
+        return TransactionResource::collection($transactions->orderByDesc('created_at')->get());
     }
 
     /**

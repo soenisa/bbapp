@@ -9,13 +9,6 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    const CATEGORY_RENT = 'Rent';
-    const CATEGORY_INTERNET = 'Internet';
-    const CATEGORY_PAPA_SUPPORT = 'Papa Support';
-    const CATEGORY_PHONE = 'Phone';
-    const CATEGORY_BANK_FEES = 'Bank Fees';
-    const CATEGORY_INCOME = 'Income';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -28,15 +21,20 @@ class Transaction extends Model
         'created_at',
     ];
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'transaction_category');
+    }
+
     public static function createEntry($attributes = []) {
         // if name matches a category, use it
         if (in_array($attributes['name'], [
-            static::CATEGORY_RENT,
-            static::CATEGORY_INTERNET,
-            static::CATEGORY_PAPA_SUPPORT,
-            static::CATEGORY_PHONE,
-            static::CATEGORY_BANK_FEES,
-            static::CATEGORY_INCOME,
+            Category::CATEGORY_RENT,
+            Category::CATEGORY_INTERNET,
+            Category::CATEGORY_PAPA_SUPPORT,
+            Category::CATEGORY_PHONE,
+            Category::CATEGORY_BANK_FEES,
+            Category::CATEGORY_INCOME,
         ])) {
             $attributes['category'] = $attributes['name'];
         }

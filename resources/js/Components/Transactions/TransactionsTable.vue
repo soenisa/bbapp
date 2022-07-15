@@ -1,18 +1,27 @@
 <template>
     <div class="flex justify-between">
         <CCardText class="fw-bold align-self-end">
-            Total spent: ${{ total }}
+            Total spent: {{ formatAmount(total) }}
         </CCardText>
         <div>
             <CForm @submit.prevent="getTransactions">
                 <div class="flex flex-row justify-end gap-x-10">
                     <div>
+                        <CFormLabel>Category</CFormLabel>
+                        <CFormSelect
+                        class="align-self-end"
+                        aria-label="Default select example"
+                        :options="categories"
+                        v-model="category">
+                        </CFormSelect>
+                    </div>
+                    <div>
                         <CFormLabel for="filterStartDate">Start Date</CFormLabel>
-                        <CFormInput type="date" id="filterStartDate" placeholder="name@example.com" aria-describedby="filterStartDate" v-model="fromDate"/>
+                        <CFormInput type="date" id="filterStartDate" aria-describedby="filterStartDate" v-model="fromDate"/>
                     </div>
                     <div>
                         <CFormLabel for="filterEndDate">End Date</CFormLabel>
-                        <CFormInput type="date" id="filterEndDate" placeholder="name@example.com" aria-describedby="filterEndDate" v-model="toDate"/>
+                        <CFormInput type="date" id="filterEndDate" aria-describedby="filterEndDate" v-model="toDate"/>
                     </div>
                     <CButton class="align-self-end" type="submit" color="primary" style="height: 38px;">Submit</CButton>
                 </div>
@@ -30,8 +39,8 @@
             </CTableRow>
         </CTableHead>
         <CTableBody>
-            <CTableRow v-for="transaction in transactions" :key="transaction.id">
-                <CTableHeaderCell scope="row">{{ transaction.id }}</CTableHeaderCell>
+            <CTableRow v-for="(transaction, index) in transactions" :key="transaction.id">
+                <CTableHeaderCell scope="row">{{ index + 1 }}</CTableHeaderCell>
                 <CTableDataCell>{{ transaction.name }}</CTableDataCell>
                 <CTableDataCell class="fw-bold font-monospace" v-bind:class="amountClass(transaction.amount)">{{ formatAmount(transaction.amount ?? 0) }}</CTableDataCell>
                 <CTableDataCell>{{ transaction.category }}</CTableDataCell>
@@ -57,14 +66,17 @@ export default {
         CTable
     },
     mounted: function() {
+        this.getCategories();
         this.getTransactions();
     },
     data: function () {
         return {
             transactions: [],
+            categories: [],
             total: 0,
             fromDate: null,
-            toDate: null
+            toDate: null,
+            category: null
         };
     },
     methods: {
@@ -75,7 +87,8 @@ export default {
             axios.get(route('transactions.index'), {
                         params: {
                             fromDate: this.fromDate,
-                            toDate: this.toDate
+                            toDate: this.toDate,
+                            category: this.category == 'All' ? null  : this.category
                         }
                 })
                 .then(response => {
@@ -86,8 +99,18 @@ export default {
                     this.total = this.total.toFixed(2);
                 });
         },
+        getCategories: function() {
+            axios.get(route('categories.index'))
+                .then(response => {
+                    this.categories = [{ label: 'All', value: null}].concat(response.data);
+                });
+        },
         formatAmount: function(amount) {
-            return `${amount < 0 ? '-' : ' '}$${Math.abs(amount).toFixed(2)}`;
+            var formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+            });
+            return `${amount < 0 ? '-' : ' '}${formatter.format(Math.abs(amount))}`;
         },
         amountClass: function(amount) {
             return {

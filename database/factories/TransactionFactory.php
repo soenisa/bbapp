@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Transaction;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 
@@ -33,11 +33,11 @@ class TransactionFactory extends Factory
         $category = null;
         if ($this->faker->boolean()) {
             $category =  Arr::random([
-                Transaction::CATEGORY_RENT,
-                Transaction::CATEGORY_PHONE,
-                Transaction::CATEGORY_INTERNET,
-                Transaction::CATEGORY_PAPA_SUPPORT,
-                Transaction::CATEGORY_BANK_FEES,
+                Category::CATEGORY_RENT,
+                Category::CATEGORY_PHONE,
+                Category::CATEGORY_INTERNET,
+                Category::CATEGORY_PAPA_SUPPORT,
+                Category::CATEGORY_BANK_FEES,
                 null
             ]);
         }
