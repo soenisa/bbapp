@@ -1,42 +1,44 @@
 <template>
-    <div>
-        <CCardText class="fw-bold">
+    <div class="flex justify-between">
+        <CCardText class="fw-bold align-self-end">
             Total spent: ${{ total }}
         </CCardText>
-        <CForm @submit.prevent="getTransactions">
-            <div class="col-auto">
-                <CFormLabel for="filterStartDate">Start Date</CFormLabel>
-                <CFormInput type="date" id="filterStartDate" placeholder="name@example.com" aria-describedby="filterStartDate" v-model="fromDate"/>
-            </div>
-            <div class="col-auto">
-                <CFormLabel for="filterEndDate">End Date</CFormLabel>
-                <CFormInput type="date" id="filterEndDate" placeholder="name@example.com" aria-describedby="filterEndDate" v-model="toDate"/>
-            </div>
-            <div class="col-auto">
-                <CButton type="submit" color="primary" class="mb-3">Submit</CButton>
-            </div>
-        </CForm>
-        <CTable striped>
-            <CTableHead>
-                <CTableRow>
-                <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                <CTableHeaderCell scope="col">Name</CTableHeaderCell>
-                <CTableHeaderCell scope="col">Amount</CTableHeaderCell>
-                <CTableHeaderCell scope="col">Category</CTableHeaderCell>
-                <CTableHeaderCell scope="col">Created At</CTableHeaderCell>
-                </CTableRow>
-            </CTableHead>
-            <CTableBody>
-                <CTableRow v-for="transaction in transactions" :key="transaction.id">
-                    <CTableHeaderCell scope="row">{{ transaction.id }}</CTableHeaderCell>
-                    <CTableDataCell>{{ transaction.name }}</CTableDataCell>
-                    <CTableDataCell class="fw-bold font-monospace" v-bind:class="amountClass(transaction.amount)">{{ formatAmount(transaction.amount ?? 0) }}</CTableDataCell>
-                    <CTableDataCell>{{ transaction.category }}</CTableDataCell>
-                    <CTableDataCell>{{ formatDate(transaction.created_at) }}</CTableDataCell>
-                </CTableRow>
-            </CTableBody>
-        </CTable>
+        <div>
+            <CForm @submit.prevent="getTransactions">
+                <div class="flex flex-row justify-end gap-x-10">
+                    <div>
+                        <CFormLabel for="filterStartDate">Start Date</CFormLabel>
+                        <CFormInput type="date" id="filterStartDate" placeholder="name@example.com" aria-describedby="filterStartDate" v-model="fromDate"/>
+                    </div>
+                    <div>
+                        <CFormLabel for="filterEndDate">End Date</CFormLabel>
+                        <CFormInput type="date" id="filterEndDate" placeholder="name@example.com" aria-describedby="filterEndDate" v-model="toDate"/>
+                    </div>
+                    <CButton class="align-self-end" type="submit" color="primary" style="height: 38px;">Submit</CButton>
+                </div>
+            </CForm>
+        </div>
     </div>
+    <CTable striped>
+        <CTableHead>
+            <CTableRow>
+            <CTableHeaderCell scope="col">#</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Name</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Amount</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Category</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Created At</CTableHeaderCell>
+            </CTableRow>
+        </CTableHead>
+        <CTableBody>
+            <CTableRow v-for="transaction in transactions" :key="transaction.id">
+                <CTableHeaderCell scope="row">{{ transaction.id }}</CTableHeaderCell>
+                <CTableDataCell>{{ transaction.name }}</CTableDataCell>
+                <CTableDataCell class="fw-bold font-monospace" v-bind:class="amountClass(transaction.amount)">{{ formatAmount(transaction.amount ?? 0) }}</CTableDataCell>
+                <CTableDataCell>{{ transaction.category }}</CTableDataCell>
+                <CTableDataCell>{{ formatDate(transaction.created_at) }}</CTableDataCell>
+            </CTableRow>
+        </CTableBody>
+    </CTable>
 </template>
 
 <style>

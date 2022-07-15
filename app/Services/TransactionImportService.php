@@ -31,7 +31,7 @@ class TransactionImportService
                 Transaction::createEntry([
                     'name' => $name, 
                     'amount' => str_replace(',', '', $amount),
-                    'created_at' => Carbon::createFromFormat('Y-m-d', $date)->startOfDay(),
+                    'created_at' => Carbon::createFromFormat('m/d/Y', $date)->startOfDay(),
                 ]);
                 $index++;
             }
