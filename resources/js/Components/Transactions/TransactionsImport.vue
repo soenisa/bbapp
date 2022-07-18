@@ -6,6 +6,13 @@
         <CFormInput type="file" id="transaction_data" @change="onFileUpload" />
       </div>
       <div>
+          <CFormLabel>Import Type</CFormLabel>
+          <CFormSelect
+          :options="importTypes"
+          v-model="type">
+          </CFormSelect>
+      </div>
+      <div>
         <CAlert color="danger" dismissible v-if="showFailureAlert">
           <strong>Import failed</strong> Check the logs?
         </CAlert>
@@ -27,6 +34,8 @@ export default {
   data() {
       return {
         FILE: null,
+        importTypes: ['big-bad-budget', 'td-visa'],
+        type: null,
         showFailureAlert: false,
         showSuccessAlert: false,
     }
@@ -38,6 +47,7 @@ export default {
     onSubmit() {
       const formData = new FormData();
       formData.append("transaction_data", this.FILE, this.FILE.name);
+      formData.append("type", this.type);
       axios
         .post(route("transactions.import"), formData)
         .then((res) => {

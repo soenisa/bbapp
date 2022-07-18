@@ -14,11 +14,14 @@ use SplFileObject;
 
 class TransactionImportService
 {
+    public const TYPE_BBB = 'big-bad-budget';
+    public const TYPE_TD_VISA = 'td-visa';
+
     /**
      * Takes a csv file containing the following format and reads them into the Transactions table
      * date, name, amount
      */
-    public function __invoke(UploadedFile $file) {
+    public function __invoke(UploadedFile $file, string $type) {
         Log::info(vsprintf('Starting import of file %s', [$file]));
 
         DB::beginTransaction();
@@ -27,11 +30,26 @@ class TransactionImportService
             $openCsv->setFlags(SplFileObject::READ_CSV);
             $index = 0;
             foreach ($openCsv as $row) {
-                list($date, $name, $amount) = $row;
+                
+                switch($type) {
+                    case static::TYPE_TD_VISA:
+                        list($date, $name, $debit, $credit) = $row;
+                        $amount = str_replace(',', '', empty($debit) ? $credit : $debit);
+                        $date = Carbon::createFromFormat('MM/DD/Y', $date)->startOfDay();
+                        break;
+                    case static::TYPE_BBB:
+                    default:
+                        list($date, $name, $amount) = $row;
+                        $amount = str_replace(',', '', $amount);
+                        $date = Carbon::createFromFormat('m/d/Y', $date)->startOfDay();
+                        break;
+                    }
+                Log::info($amount . ' ' . $date);
+                
                 Transaction::createEntry([
                     'name' => $name, 
-                    'amount' => str_replace(',', '', $amount),
-                    'created_at' => Carbon::createFromFormat('m/d/Y', $date)->startOfDay(),
+                    'amount' => $amount,
+                    'created_at' => $date,
                 ]);
                 $index++;
             }

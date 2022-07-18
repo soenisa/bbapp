@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 
 class Transaction extends Model
 {
@@ -28,15 +30,17 @@ class Transaction extends Model
 
     public static function createEntry($attributes = []) {
         // if name matches a category, use it
-        if (in_array($attributes['name'], [
+        $categories = [
             Category::CATEGORY_RENT,
             Category::CATEGORY_INTERNET,
             Category::CATEGORY_PAPA_SUPPORT,
             Category::CATEGORY_PHONE,
             Category::CATEGORY_BANK_FEES,
             Category::CATEGORY_INCOME,
-        ])) {
-            $attributes['category'] = $attributes['name'];
+        ];
+        $categories = array_map(function ($value) { return strtolower($value); }, $categories);
+        if (in_array(strtolower($attributes['name']), $categories)) {
+            $attributes['category'] = ucwords($attributes['name']);
         }
 
         return self::create($attributes);
