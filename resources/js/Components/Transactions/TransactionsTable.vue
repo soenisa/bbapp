@@ -35,6 +35,7 @@
             <CTableHeaderCell scope="col">Name</CTableHeaderCell>
             <CTableHeaderCell scope="col">Amount</CTableHeaderCell>
             <CTableHeaderCell scope="col">Category</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Account</CTableHeaderCell>
             <CTableHeaderCell scope="col">Created At</CTableHeaderCell>
             </CTableRow>
         </CTableHead>
@@ -44,6 +45,7 @@
                 <CTableDataCell>{{ transaction.name }}</CTableDataCell>
                 <CTableDataCell class="fw-bold font-monospace" v-bind:class="amountClass(transaction.amount)">{{ formatAmount(transaction.amount ?? 0) }}</CTableDataCell>
                 <CTableDataCell>{{ transaction.category }}</CTableDataCell>
+                <CTableDataCell>{{ transaction.account ?? '—' }}</CTableDataCell>
                 <CTableDataCell>{{ formatDate(transaction.created_at) }}</CTableDataCell>
             </CTableRow>
         </CTableBody>
@@ -97,6 +99,7 @@ export default {
                         return a + parseFloat(b.amount);
                     }, 0);
                     this.total = this.total.toFixed(2);
+                    console.log(this.transactions);
                 });
         },
         getCategories: function() {
