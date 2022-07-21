@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Transaction extends Model
 {
@@ -17,6 +18,7 @@ class Transaction extends Model
     protected $fillable = [
         'name',
         'category',
+        'account',
         'amount',
         'created_at',
     ];
@@ -28,17 +30,14 @@ class Transaction extends Model
 
     public static function createEntry($attributes = []) {
         // if name matches a category, use it
-        if (in_array($attributes['name'], [
-            Category::CATEGORY_RENT,
-            Category::CATEGORY_INTERNET,
-            Category::CATEGORY_PAPA_SUPPORT,
-            Category::CATEGORY_PHONE,
-            Category::CATEGORY_BANK_FEES,
-            Category::CATEGORY_INCOME,
-        ])) {
-            $attributes['category'] = $attributes['name'];
+        $categories = array_map(function ($value) { return strtolower($value); }, Category::CATEGORIES);
+        
+        if (in_array(strtolower($attributes['name']), $categories)) {
+            $attributes['category'] = ucwords($attributes['name']);
+        } if (Str::contains(strtolower($attributes['name']), ['interac', 'etransfer', 'e-transfer'])) {
+            $attributes['category'] = Category::CATEGORY_ETRANSFER;
         }
-
+        
         return self::create($attributes);
     }
 }

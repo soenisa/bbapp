@@ -14,14 +14,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return [
-            Category::CATEGORY_RENT,
-            Category::CATEGORY_INTERNET,
-            Category::CATEGORY_PAPA_SUPPORT,
-            Category::CATEGORY_PHONE,
-            Category::CATEGORY_BANK_FEES,
-            Category::CATEGORY_INCOME,
-        ];
+        return Category::CATEGORIES;
     }
 
     /**

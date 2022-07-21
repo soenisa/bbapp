@@ -14,11 +14,14 @@ use SplFileObject;
 
 class TransactionImportService
 {
+    public const TYPE_BBB = 'big-bad-budget';
+    public const TYPE_TD_VISA = 'td-visa';
+
     /**
      * Takes a csv file containing the following format and reads them into the Transactions table
      * date, name, amount
      */
-    public function __invoke(UploadedFile $file) {
+    public function __invoke(UploadedFile $file, ?string $type) {
         Log::info(vsprintf('Starting import of file %s', [$file]));
 
         DB::beginTransaction();
@@ -27,11 +30,29 @@ class TransactionImportService
             $openCsv->setFlags(SplFileObject::READ_CSV);
             $index = 0;
             foreach ($openCsv as $row) {
-                list($date, $name, $amount) = $row;
+                if (in_array(null, $row, true)) {
+                    continue;
+                }
+
+                switch($type) {
+                    case static::TYPE_TD_VISA:
+                        list($date, $name, $debit, $credit) = $row;
+                        $amount = str_replace(',', '', empty($debit) ? $credit * -1 : $debit);
+                        break;
+                    case static::TYPE_BBB:
+                    default:
+                        list($date, $name, $amount) = $row;
+                        $amount = str_replace(',', '', $amount);
+                        $type = null;
+                        break;
+                    }
+
+                $date = Carbon::createFromFormat('m/d/Y', $date)->startOfDay()->shiftTimezone('America/Toronto');
                 Transaction::createEntry([
                     'name' => $name, 
-                    'amount' => str_replace(',', '', $amount),
-                    'created_at' => Carbon::createFromFormat('m/d/Y', $date)->startOfDay(),
+                    'amount' => $amount,
+                    'created_at' => $date,
+                    'account' => $type,
                 ]);
                 $index++;
             }
@@ -47,5 +68,10 @@ class TransactionImportService
         }
 
         Log::info(vsprintf('Completed import of file %s', [$file]));
+    }
+
+    public function test(?string $type)
+    {
+        return $type == static::TYPE_BBB ? null : $type;
     }
 }

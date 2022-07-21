@@ -117,10 +117,10 @@ class TransactionController extends Controller
         if($file->extension() !== 'csv') {
             return $this->errorResponse(Response::HTTP_BAD_REQUEST, 'file must be a csv');
         }
-        Log::info($file);
+        $type = $request->input('type', null);
 
         $service = resolve(TransactionImportService::class);
-        $service($file);
+        $service($file, $type);
     }
 
     private function errorResponse (int $statusCode, $message)
