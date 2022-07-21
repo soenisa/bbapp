@@ -30,20 +30,22 @@ class TransactionImportService
             $openCsv->setFlags(SplFileObject::READ_CSV);
             $index = 0;
             foreach ($openCsv as $row) {
-                
+                if (in_array(null, $row, true)) {
+                    continue;
+                }
+
                 switch($type) {
                     case static::TYPE_TD_VISA:
                         list($date, $name, $debit, $credit) = $row;
-                        $amount = str_replace(',', '', empty($debit) ? $credit : $debit);
-                        $date = Carbon::createFromFormat('MM/DD/Y', $date)->startOfDay();
+                        $amount = str_replace(',', '', empty($debit) ? $credit * -1 : $debit);
                         break;
                     case static::TYPE_BBB:
                     default:
                         list($date, $name, $amount) = $row;
                         $amount = str_replace(',', '', $amount);
-                        $date = Carbon::createFromFormat('m/d/Y', $date)->startOfDay();
                         break;
                     }
+                $date = Carbon::createFromFormat('m/d/Y', $date)->startOfDay()->shiftTimezone('America/Toronto');
                 Log::info($amount . ' ' . $date);
                 
                 Transaction::createEntry([
