@@ -3,12 +3,14 @@
 namespace App\Services;
 
 use App\Exceptions\TransactionImportException;
+use App\Models\Category;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use SplFileObject;
 
@@ -16,6 +18,7 @@ class TransactionImportService
 {
     public const TYPE_BBB = 'big-bad-budget';
     public const TYPE_TD_VISA = 'td-visa';
+    public const TYPE_SCOTIA_DEBIT = 'scotia-debit';
 
     /**
      * Takes a csv file containing the following format and reads them into the Transactions table
@@ -34,10 +37,28 @@ class TransactionImportService
                     continue;
                 }
 
+                $category = null;
                 switch($type) {
                     case static::TYPE_TD_VISA:
                         list($date, $name, $debit, $credit) = $row;
                         $amount = str_replace(',', '', empty($debit) ? $credit * -1 : $debit);
+                        break;
+                    case static::TYPE_SCOTIA_DEBIT:
+                        list($date, $credit, $debit, $scotiaType, $name) = $row;
+                        $amount = trim($debit) == '-' ? $credit : $debit;
+                        $scotiaType = trim($scotiaType);
+                            
+                        if (strcasecmp($scotiaType, 'ABM Withdrawal') == 0) {
+                            $category = Category::CATEGORY_ATM_WITHDRAWAL;
+                            $name = 'Cash Withdrawal';
+                        } else if (strcasecmp($scotiaType, 'Payroll Deposit') == 0) {
+                            $category = Category::CATEGORY_INCOME;
+                        } else if (strcasecmp($scotiaType, 'Insurance') == 0) {
+                            $category = Category::CATEGORY_INSURANCE;
+                        } else if (strcasecmp($scotiaType, 'Investment') == 0) {
+                            $category = Category::CATEGORY_INVESTMENT;
+                        }
+
                         break;
                     case static::TYPE_BBB:
                     default:
@@ -52,6 +73,7 @@ class TransactionImportService
                     'name' => $name, 
                     'amount' => $amount,
                     'created_at' => $date,
+                    'category' => $category,
                     'account' => $type,
                 ]);
                 $index++;

@@ -34,7 +34,7 @@ class Transaction extends Model
         
         if (in_array(strtolower($attributes['name']), $categories)) {
             $attributes['category'] = ucwords($attributes['name']);
-        } if (Str::contains(strtolower($attributes['name']), ['interac', 'etransfer', 'e-transfer'])) {
+        } if (Str::contains(strtolower($attributes['name']), ['interac', 'etransfer', 'e-transfer'], true)) {
             $attributes['category'] = Category::CATEGORY_ETRANSFER;
         }
         
