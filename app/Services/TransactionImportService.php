@@ -47,9 +47,9 @@ class TransactionImportService
                         $amount = str_replace(',', '', empty($debit) ? $credit * -1 : $debit);
                         break;
                     case static::TYPE_SCOTIA_DEBIT:
-                        list($date, $credit, $debit, $scotiaType, $originalName) = $row;
+                        list($date, $amount, $something, $scotiaType, $originalName) = $row;
                         $name = $originalName;
-                        $amount = trim($debit) == '-' ? $credit : $debit;
+                        $amount = -$amount;
                         $scotiaType = trim($scotiaType);
                             
                         if (strcasecmp($scotiaType, 'ABM Withdrawal') == 0) {
@@ -61,6 +61,10 @@ class TransactionImportService
                             $category = Category::CATEGORY_INSURANCE;
                         } else if (strcasecmp($scotiaType, 'Investment') == 0) {
                             $category = Category::CATEGORY_INVESTMENT;
+                        } else if (strcasecmp($scotiaType, 'CRD. Card Bill Payment') == 0) {
+                            // credit card payment, skip as it's accounted for in other transactions
+                            Log::info('skipt this');
+                            continue 2;
                         }
                         
                         break;

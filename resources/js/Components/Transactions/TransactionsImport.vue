@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CForm @submit.prevent="onSubmit">
+    <CForm @submit.prevent="onSubmit" class="flex flex-row gap-3">
       <div class="mb-3">
         <CFormLabel for="transaction_data">Import transactions</CFormLabel>
         <CFormInput type="file" id="transaction_data" @change="onFileUpload" />
@@ -12,16 +12,16 @@
           v-model="type">
           </CFormSelect>
       </div>
-      <div>
-        <CAlert color="danger" dismissible v-if="showFailureAlert">
-          <strong>Import failed</strong> Check the logs?
-        </CAlert>
-        <CAlert color="success" dismissible v-if="showSuccessAlert">
-          <strong>Import complete</strong>
-        </CAlert>
-      </div>
-      <CButton type="submit" color="primary"> Submit </CButton>
+      <CButton type="submit" color="primary"  class="align-self-end mb-3" style="height: 38px;"> Submit </CButton>
     </CForm>
+    <div>
+      <CAlert color="danger" dismissible v-if="showFailureAlert">
+        <strong>Import failed</strong> Check the logs?
+      </CAlert>
+      <CAlert color="success" dismissible v-if="showSuccessAlert">
+        <strong>Import complete</strong>
+      </CAlert>
+    </div>
   </div>
 </template>
 
