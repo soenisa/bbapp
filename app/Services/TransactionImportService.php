@@ -19,6 +19,7 @@ class TransactionImportService
     public const TYPE_BBB = 'big-bad-budget';
     public const TYPE_TD_VISA = 'td-visa';
     public const TYPE_SCOTIA_DEBIT = 'scotia-debit';
+    public const TYPE_SCOTIA_AMEX = 'scotia-amex';
 
     /**
      * Takes a csv file containing the following format and reads them into the Transactions table
@@ -59,6 +60,11 @@ class TransactionImportService
                             $category = Category::CATEGORY_INVESTMENT;
                         }
 
+                        break;
+                    case static::TYPE_SCOTIA_AMEX:
+                        list($date, $name, $amount) = $row;
+                        $amount = str_replace(',', '', $amount * -1);
+                        $name = Str::title($name);
                         break;
                     case static::TYPE_BBB:
                     default:
