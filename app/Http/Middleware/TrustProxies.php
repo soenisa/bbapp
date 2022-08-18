@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Middleware\TrustProxies as Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class TrustProxies extends Middleware
 {
@@ -25,4 +26,22 @@ class TrustProxies extends Middleware
         Request::HEADER_X_FORWARDED_PORT |
         Request::HEADER_X_FORWARDED_PROTO |
         Request::HEADER_X_FORWARDED_AWS_ELB;
+
+    protected function proxies()
+    {
+        if(App::environment('heroku')) {
+            return '*';
+        }
+
+        return $this->proxies;
+    }
+
+    protected function getTrustedHeaderNames()
+    {
+        if(App::environment('heroku')) {
+            $this->headers = Request::HEADER_X_FORWARDED_AWS_ELB;
+        }
+
+        return parent::getTrustedHeaderNames();
+    }
 }
