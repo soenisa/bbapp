@@ -510,8 +510,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2rem;
 }.h-9{
   height: 2.25rem;
-}.h-36{
-  height: 9rem;
 }.min-h-screen{
   min-height: 100vh;
 }.w-5{

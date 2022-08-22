@@ -1,7 +1,7 @@
 <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head } from "@inertiajs/inertia-vue3";
-import {TransactionsTable, TransactionsImport} from "@/Components/Transactions";
+import { TransactionsTable } from "@/Components/Transactions";
 </script>
 
 <template>

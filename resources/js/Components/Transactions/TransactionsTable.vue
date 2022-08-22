@@ -1,4 +1,6 @@
 <template>
+<div>
+    <SummaryPanel />
     <div class="flex justify-between">
         <CCardText class="fw-bold align-self-end">
             Total spent: {{ formatAmount(total) }}
@@ -50,6 +52,7 @@
             </CTableRow>
         </CTableBody>
     </CTable>
+    </div>
 </template>
 
 <style>
@@ -59,13 +62,15 @@
 </style>
 
 <script>
+import SummaryPanel from  "./SummaryPanel";
 import { CTable, CTableBody, CTableRow, CTableDataCell, CTableHeaderCell, CTableHead,  } from '@coreui/vue';
 import moment from 'moment';
 
 export default {
     name: "TransactionsTable",
     components: {
-        CTable
+        CTable, 
+        SummaryPanel
     },
     mounted: function() {
         this.getCategories();
