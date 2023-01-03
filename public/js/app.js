@@ -33181,8 +33181,12 @@ __webpack_require__.r(__webpack_exports__);
     CRow: _coreui_vue__WEBPACK_IMPORTED_MODULE_0__.CRow,
     CCol: _coreui_vue__WEBPACK_IMPORTED_MODULE_0__.CCol,
     CWidgetStatsF: _coreui_vue__WEBPACK_IMPORTED_MODULE_0__.CWidgetStatsF,
-    CIcon: _coreui_icons_vue__WEBPACK_IMPORTED_MODULE_1__.CIcon,
-    cilAppsSettings: _coreui_icons__WEBPACK_IMPORTED_MODULE_2__.cilAppsSettings
+    CIcon: _coreui_icons_vue__WEBPACK_IMPORTED_MODULE_1__.CIcon
+  },
+  setup: function setup() {
+    return {
+      cilAppsSettings: _coreui_icons__WEBPACK_IMPORTED_MODULE_2__.cilAppsSettings
+    };
   },
   data: function data() {
     return {
@@ -33190,8 +33194,73 @@ __webpack_require__.r(__webpack_exports__);
       importTypes: ['big-bad-budget', 'td-visa', 'scotia-debit', 'scotia-amex'],
       type: null,
       showFailureAlert: false,
-      showSuccessAlert: false
+      showSuccessAlert: false,
+      summaries: [{
+        'id': 'ATM withdrawal-summary',
+        'title': 'ATM Withdrawal',
+        target: 1000,
+        value: 1999.50
+      }, {
+        'id': 'Bank fees-summary',
+        'title': 'Bank Fees',
+        target: 1000,
+        value: 1999.50
+      }, {
+        'id': 'E-transfer-summary',
+        'title': 'E-transfer',
+        target: 1000,
+        value: 1999.50
+      }, {
+        'id': 'income-summary',
+        'title': 'Income',
+        target: 1000,
+        value: 1999.50
+      }, {
+        'id': 'insurance-summary',
+        'title': 'Insurance',
+        target: 1000,
+        value: 1999.50
+      }, {
+        'id': 'internet-summary',
+        'title': 'Internet',
+        target: 1000,
+        value: 1000
+      }, {
+        'id': 'investment-summary',
+        'title': 'Investment',
+        target: 1000,
+        value: 1999.50
+      }, {
+        'id': 'Papa support-summary',
+        'title': 'Papa Support',
+        target: 1000,
+        value: 1999.50
+      }, {
+        'id': 'phone-summary',
+        'title': 'Phone',
+        target: 1000,
+        value: 999.50
+      }, {
+        'id': 'rent-summary',
+        'title': 'Rent',
+        target: 1000,
+        value: 1999.50
+      }]
     };
+  },
+  methods: {
+    getColor: function getColor(target, value) {
+      if (value < target) {
+        return 'info';
+      } else if (value == target) {
+        return 'warning';
+      }
+
+      return 'danger';
+    },
+    getIcon: function getIcon(id) {
+      return _coreui_icons__WEBPACK_IMPORTED_MODULE_2__.cilAppsSettings;
+    }
   }
 });
 
@@ -34207,85 +34276,43 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CRow, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CCol, {
-        xs: 4
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CWidgetStatsF, {
-            color: "primary",
-            padding: false,
-            title: "Title",
-            value: "$1.999,50"
-          }, {
-            icon: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CIcon, {
-                icon: _ctx.cilAppsSettings,
-                size: "xl"
-              }, null, 8
-              /* PROPS */
-              , ["icon"])];
-            }),
-            _: 1
-            /* STABLE */
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.summaries, function (summary) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_CCol, {
+          xs: 4,
+          key: summary.id
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CWidgetStatsF, {
+              color: $options.getColor(summary.target, summary.value),
+              padding: false,
+              id: summary.id,
+              title: summary.title,
+              value: summary.value
+            }, {
+              icon: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CIcon, {
+                  icon: $options.getIcon(summary.id),
+                  size: "xl"
+                }, null, 8
+                /* PROPS */
+                , ["icon"])];
+              }),
+              _: 2
+              /* DYNAMIC */
 
-          })];
-        }),
-        _: 1
-        /* STABLE */
+            }, 1032
+            /* PROPS, DYNAMIC_SLOTS */
+            , ["color", "id", "title", "value"])];
+          }),
+          _: 2
+          /* DYNAMIC */
 
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CCol, {
-        xs: 4
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CWidgetStatsF, {
-            color: "info",
-            padding: false,
-            title: "Title",
-            value: "$1.999,50"
-          }, {
-            icon: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CIcon, {
-                icon: _ctx.cilAppsSettings,
-                size: "xl"
-              }, null, 8
-              /* PROPS */
-              , ["icon"])];
-            }),
-            _: 1
-            /* STABLE */
-
-          })];
-        }),
-        _: 1
-        /* STABLE */
-
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CCol, {
-        xs: 4
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CWidgetStatsF, {
-            color: "warning",
-            padding: false,
-            title: "Title",
-            value: "$1.999,50"
-          }, {
-            icon: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CIcon, {
-                icon: _ctx.cilAppsSettings,
-                size: "xl"
-              }, null, 8
-              /* PROPS */
-              , ["icon"])];
-            }),
-            _: 1
-            /* STABLE */
-
-          })];
-        }),
-        _: 1
-        /* STABLE */
-
-      })];
+        }, 1024
+        /* DYNAMIC_SLOTS */
+        );
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))];
     }),
     _: 1
     /* STABLE */
