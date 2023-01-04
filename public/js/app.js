@@ -148,21 +148,6 @@ const CIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
 
 /***/ }),
 
-/***/ "./node_modules/@coreui/icons/js/free/cil-apps-settings.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@coreui/icons/js/free/cil-apps-settings.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "cilAppsSettings": () => (/* binding */ cilAppsSettings)
-/* harmony export */ });
-const cilAppsSettings = ["512 512","<path fill='var(--ci-primary-color, currentColor)' d='M88,160A64,64,0,1,0,24,96,64.072,64.072,0,0,0,88,160Zm0-96A32,32,0,1,1,56,96,32.036,32.036,0,0,1,88,64Z' class='ci-primary'/><path fill='var(--ci-primary-color, currentColor)' d='M256,32a64,64,0,1,0,64,64A64.072,64.072,0,0,0,256,32Zm0,96a32,32,0,1,1,32-32A32.036,32.036,0,0,1,256,128Z' class='ci-primary'/><path fill='var(--ci-primary-color, currentColor)' d='M424,160a64,64,0,1,0-64-64A64.072,64.072,0,0,0,424,160Zm0-96a32,32,0,1,1-32,32A32.036,32.036,0,0,1,424,64Z' class='ci-primary'/><path fill='var(--ci-primary-color, currentColor)' d='M88,192a64,64,0,1,0,64,64A64.072,64.072,0,0,0,88,192Zm0,96a32,32,0,1,1,32-32A32.036,32.036,0,0,1,88,288Z' class='ci-primary'/><path fill='var(--ci-primary-color, currentColor)' d='M256,192a64,64,0,1,0,64,64A64.072,64.072,0,0,0,256,192Zm0,96a32,32,0,1,1,32-32A32.036,32.036,0,0,1,256,288Z' class='ci-primary'/><path fill='var(--ci-primary-color, currentColor)' d='M424,192a64,64,0,1,0,64,64A64.072,64.072,0,0,0,424,192Zm0,96a32,32,0,1,1,32-32A32.036,32.036,0,0,1,424,288Z' class='ci-primary'/><path fill='var(--ci-primary-color, currentColor)' d='M424,352a64,64,0,1,0,64,64A64.072,64.072,0,0,0,424,352Zm0,96a32,32,0,1,1,32-32A32.036,32.036,0,0,1,424,448Z' class='ci-primary'/><rect width='32' height='32' x='56' y='408' fill='var(--ci-primary-color, currentColor)' class='ci-primary'/><rect width='32' height='32' x='152' y='408' fill='var(--ci-primary-color, currentColor)' class='ci-primary'/><rect width='32' height='32' x='248' y='408' fill='var(--ci-primary-color, currentColor)' class='ci-primary'/>"]
-
-/***/ }),
-
 /***/ "./node_modules/@coreui/icons/js/free/cil-data-transfer-up.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@coreui/icons/js/free/cil-data-transfer-up.js ***!
@@ -175,6 +160,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "cilDataTransferUp": () => (/* binding */ cilDataTransferUp)
 /* harmony export */ });
 const cilDataTransferUp = ["512 512","<rect width='480' height='32' x='16' y='16' fill='var(--ci-primary-color, currentColor)' class='ci-primary'/><polygon fill='var(--ci-primary-color, currentColor)' points='116.687 212.687 139.313 235.313 232 142.627 232 496 264 496 264 142.627 356.687 235.313 379.313 212.687 248 81.373 116.687 212.687' class='ci-primary'/>"]
+
+/***/ }),
+
+/***/ "./node_modules/@coreui/icons/js/free/cil-mood-bad.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@coreui/icons/js/free/cil-mood-bad.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "cilMoodBad": () => (/* binding */ cilMoodBad)
+/* harmony export */ });
+const cilMoodBad = ["512 512","<path fill='var(--ci-primary-color, currentColor)' d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM403.078,403.078a207.253,207.253,0,1,1,44.589-66.125A207.332,207.332,0,0,1,403.078,403.078Z' class='ci-primary'/><rect width='40' height='40' x='152' y='200' fill='var(--ci-primary-color, currentColor)' class='ci-primary'/><rect width='40' height='40' x='320' y='200' fill='var(--ci-primary-color, currentColor)' class='ci-primary'/><path fill='var(--ci-primary-color, currentColor)' d='M256,280A104,104,0,0,0,152,384H360A104,104,0,0,0,256,280Z' class='ci-primary'/>"]
+
+/***/ }),
+
+/***/ "./node_modules/@coreui/icons/js/free/cil-mood-good.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@coreui/icons/js/free/cil-mood-good.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "cilMoodGood": () => (/* binding */ cilMoodGood)
+/* harmony export */ });
+const cilMoodGood = ["512 512","<path fill='var(--ci-primary-color, currentColor)' d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM403.078,403.078a207.253,207.253,0,1,1,44.589-66.125A207.332,207.332,0,0,1,403.078,403.078Z' class='ci-primary'/><rect width='40' height='40' x='152' y='200' fill='var(--ci-primary-color, currentColor)' class='ci-primary'/><rect width='40' height='40' x='320' y='200' fill='var(--ci-primary-color, currentColor)' class='ci-primary'/><path fill='var(--ci-primary-color, currentColor)' d='M256,384A104,104,0,0,0,360,280H152A104,104,0,0,0,256,384Z' class='ci-primary'/>"]
+
+/***/ }),
+
+/***/ "./node_modules/@coreui/icons/js/free/cil-mood-very-good.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@coreui/icons/js/free/cil-mood-very-good.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "cilMoodVeryGood": () => (/* binding */ cilMoodVeryGood)
+/* harmony export */ });
+const cilMoodVeryGood = ["512 512","<path fill='var(--ci-primary-color, currentColor)' d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM403.078,403.078a207.253,207.253,0,1,1,44.589-66.125A207.332,207.332,0,0,1,403.078,403.078Z' class='ci-primary'/><path fill='var(--ci-primary-color, currentColor)' d='M256,384A104,104,0,0,0,360,280H152A104,104,0,0,0,256,384Z' class='ci-primary'/><polygon fill='var(--ci-primary-color, currentColor)' points='205.757 228.292 226.243 203.708 168 155.173 109.757 203.708 130.243 228.292 168 196.827 205.757 228.292' class='ci-primary'/><polygon fill='var(--ci-primary-color, currentColor)' points='285.757 203.708 306.243 228.292 344 196.827 381.757 228.292 402.243 203.708 344 155.173 285.757 203.708' class='ci-primary'/>"]
 
 /***/ }),
 
@@ -33171,7 +33201,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _coreui_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @coreui/vue */ "./node_modules/@coreui/vue/dist/index.es.js");
 /* harmony import */ var _coreui_icons_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @coreui/icons-vue */ "./node_modules/@coreui/icons-vue/dist/index.es.js");
-/* harmony import */ var _coreui_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @coreui/icons */ "./node_modules/@coreui/icons/js/free/cil-apps-settings.js");
+/* harmony import */ var _coreui_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @coreui/icons */ "./node_modules/@coreui/icons/js/free/cil-mood-good.js");
+/* harmony import */ var _coreui_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @coreui/icons */ "./node_modules/@coreui/icons/js/free/cil-mood-very-good.js");
+/* harmony import */ var _coreui_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @coreui/icons */ "./node_modules/@coreui/icons/js/free/cil-mood-bad.js");
 
 
 
@@ -33185,8 +33217,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   setup: function setup() {
     return {
-      cilAppsSettings: _coreui_icons__WEBPACK_IMPORTED_MODULE_2__.cilAppsSettings
+      cilMoodGood: _coreui_icons__WEBPACK_IMPORTED_MODULE_2__.cilMoodGood,
+      cilMoodVeryGood: _coreui_icons__WEBPACK_IMPORTED_MODULE_3__.cilMoodVeryGood,
+      cilMoodBad: _coreui_icons__WEBPACK_IMPORTED_MODULE_4__.cilMoodBad
     };
+  },
+  mounted: function mounted() {
+    this.getSummaries();
   },
   data: function data() {
     return {
@@ -33196,70 +33233,93 @@ __webpack_require__.r(__webpack_exports__);
       showFailureAlert: false,
       showSuccessAlert: false,
       summaries: [{
-        'id': 'ATM withdrawal-summary',
-        'title': 'ATM Withdrawal',
-        target: 1000,
+        id: 'ATM withdrawal-summary',
+        title: 'ATM Withdrawal',
+        status: 'low',
         value: 1999.50
       }, {
-        'id': 'Bank fees-summary',
-        'title': 'Bank Fees',
-        target: 1000,
+        id: 'Bank fees-summary',
+        title: 'Bank Fees',
+        status: 'low',
         value: 1999.50
       }, {
-        'id': 'E-transfer-summary',
-        'title': 'E-transfer',
-        target: 1000,
+        id: 'E-transfer-summary',
+        title: 'E-transfer',
+        status: 'high',
         value: 1999.50
       }, {
-        'id': 'income-summary',
-        'title': 'Income',
-        target: 1000,
+        id: 'income-summary',
+        title: 'Income',
+        status: 'low',
         value: 1999.50
       }, {
-        'id': 'insurance-summary',
-        'title': 'Insurance',
-        target: 1000,
+        id: 'insurance-summary',
+        title: 'Insurance',
+        status: 'low',
         value: 1999.50
       }, {
-        'id': 'internet-summary',
-        'title': 'Internet',
-        target: 1000,
+        id: 'internet-summary',
+        title: 'Internet',
+        status: 'mid',
         value: 1000
       }, {
-        'id': 'investment-summary',
-        'title': 'Investment',
-        target: 1000,
+        id: 'investment-summary',
+        title: 'Investment',
+        status: 'low',
         value: 1999.50
       }, {
-        'id': 'Papa support-summary',
-        'title': 'Papa Support',
-        target: 1000,
+        id: 'Papa support-summary',
+        title: 'Papa Support',
+        status: 'low',
         value: 1999.50
       }, {
-        'id': 'phone-summary',
-        'title': 'Phone',
-        target: 1000,
+        id: 'phone-summary',
+        title: 'Phone',
+        status: 'mid',
         value: 999.50
       }, {
-        'id': 'rent-summary',
-        'title': 'Rent',
-        target: 1000,
+        id: 'rent-summary',
+        title: 'Rent',
+        status: 'high',
         value: 1999.50
       }]
     };
   },
   methods: {
-    getColor: function getColor(target, value) {
-      if (value < target) {
+    getColor: function getColor(status) {
+      if (status == 'low') {
         return 'info';
-      } else if (value == target) {
+      } else if (status == 'mid') {
         return 'warning';
       }
 
       return 'danger';
     },
-    getIcon: function getIcon(id) {
-      return _coreui_icons__WEBPACK_IMPORTED_MODULE_2__.cilAppsSettings;
+    getIcon: function getIcon(status) {
+      if (status == 'low') {
+        return _coreui_icons__WEBPACK_IMPORTED_MODULE_3__.cilMoodVeryGood;
+      } else if (status == 'mid') {
+        return _coreui_icons__WEBPACK_IMPORTED_MODULE_2__.cilMoodGood;
+      }
+
+      return _coreui_icons__WEBPACK_IMPORTED_MODULE_4__.cilMoodBad;
+    },
+    formatAmount: function formatAmount(amount) {
+      var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      });
+      return "".concat(amount < 0 ? '-' : ' ').concat(formatter.format(Math.abs(amount)));
+    },
+    getSummaries: function getSummaries() {
+      var _this = this;
+
+      // TODO: pass fromDate from TransactionsTable as a parent property into this component?
+      axios.get(route('summaries.index'), {
+        params: {}
+      }).then(function (response) {
+        _this.summaries = response.data;
+      });
     }
   }
 });
@@ -34282,16 +34342,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: summary.id
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            var _summary$value;
+
             return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CWidgetStatsF, {
-              color: $options.getColor(summary.target, summary.value),
+              color: $options.getColor(summary.status),
               padding: false,
               id: summary.id,
               title: summary.title,
-              value: summary.value
+              value: $options.formatAmount((_summary$value = summary.value) !== null && _summary$value !== void 0 ? _summary$value : 0)
             }, {
               icon: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                 return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CIcon, {
-                  icon: $options.getIcon(summary.id),
+                  icon: $options.getIcon(summary.status),
                   size: "xl"
                 }, null, 8
                 /* PROPS */

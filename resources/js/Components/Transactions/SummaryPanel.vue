@@ -2,9 +2,9 @@
     <div id="summary-panel">
         <CRow>
           <CCol :xs="4"  v-for="(summary) in summaries" :key="summary.id">
-            <CWidgetStatsF :color="getColor(summary.target, summary.value)" :padding="false" :id="summary.id" :title="summary.title" :value="summary.value">
+            <CWidgetStatsF :color="getColor(summary.status)" :padding="false" :id="summary.id" :title="summary.title" :value="formatAmount(summary.value ?? 0)">
               <template #icon>
-                <CIcon :icon="getIcon(summary.id)" size="xl"/>
+                <CIcon :icon="getIcon(summary.status)" size="xl"/>
               </template>
             </CWidgetStatsF>
           </CCol>
@@ -15,7 +15,7 @@
 <script>
 import { CRow, CCol, CWidgetStatsF } from '@coreui/vue';
 import { CIcon } from '@coreui/icons-vue';
-import { cilAppsSettings } from '@coreui/icons';
+import { cilMoodGood, cilMoodVeryGood, cilMoodBad } from '@coreui/icons';
 
 export default {
   name: "SummaryPanel",
@@ -27,8 +27,13 @@ export default {
   },
   setup() {
     return {
-      cilAppsSettings
+      cilMoodGood,
+      cilMoodVeryGood,
+      cilMoodBad
     };
+  },
+  mounted() {
+    this.getSummaries();
   },
   data() {
       return {
@@ -38,32 +43,55 @@ export default {
         showFailureAlert: false,
         showSuccessAlert: false,
         summaries: [
-          { 'id':'ATM withdrawal-summary', 'title': 'ATM Withdrawal', target: 1000, value: 1999.50},
-          { 'id':'Bank fees-summary', 'title': 'Bank Fees', target: 1000, value: 1999.50},
-          { 'id':'E-transfer-summary', 'title': 'E-transfer', target: 1000, value: 1999.50},
-          { 'id':'income-summary', 'title': 'Income', target: 1000, value: 1999.50},
-          { 'id':'insurance-summary', 'title': 'Insurance', target: 1000, value: 1999.50},
-          { 'id':'internet-summary', 'title': 'Internet', target: 1000, value: 1000},
-          { 'id':'investment-summary', 'title': 'Investment', target: 1000, value: 1999.50},
-          { 'id':'Papa support-summary', 'title': 'Papa Support', target: 1000, value: 1999.50},
-          { 'id':'phone-summary', 'title': 'Phone', target: 1000, value: 999.50},
-          { 'id':'rent-summary', 'title': 'Rent', target: 1000, value: 1999.50},
+          { id:'ATM withdrawal-summary', title: 'ATM Withdrawal', status: 'low', value: 1999.50},
+          { id:'Bank fees-summary', title: 'Bank Fees', status: 'low', value: 1999.50},
+          { id:'E-transfer-summary', title: 'E-transfer', status: 'high', value: 1999.50},
+          { id:'income-summary', title: 'Income', status: 'low', value: 1999.50},
+          { id:'insurance-summary', title: 'Insurance', status: 'low', value: 1999.50},
+          { id:'internet-summary', title: 'Internet', status: 'mid', value: 1000},
+          { id:'investment-summary', title: 'Investment', status: 'low', value: 1999.50},
+          { id:'Papa support-summary', title: 'Papa Support', status: 'low', value: 1999.50},
+          { id:'phone-summary', title: 'Phone', status: 'mid', value: 999.50},
+          { id:'rent-summary', title: 'Rent', status: 'high', value: 1999.50},
         ]
     }
   },
   methods: {
-    getColor: (target, value) => {
-      if (value < target) {
+    getColor: (status) => {
+      if (status == 'low') {
         return 'info'
-      } else if (value == target) {
+      } else if (status == 'mid') {
         return 'warning';
       }
 
       return 'danger';
     },
-    getIcon: (id) => {
-      return cilAppsSettings;
-    }
+    getIcon: (status) => {
+      if (status == 'low') {
+        return cilMoodVeryGood;
+      } else if (status == 'mid') {
+        return cilMoodGood;
+      }
+
+      return cilMoodBad;
+    },
+    formatAmount: function(amount) {
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        });
+        return `${amount < 0 ? '-' : ' '}${formatter.format(Math.abs(amount))}`;
+    },
+    getSummaries: function() {
+      // TODO: pass fromDate from TransactionsTable as a parent property into this component?
+        axios.get(route('summaries.index'), {
+                params: {
+                }
+              })
+            .then(response => {
+              this.summaries = response.data;
+            });
+    },
   },
 }
 </script>
