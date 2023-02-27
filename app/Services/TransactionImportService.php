@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Exceptions\TransactionImportException;
 use App\Models\Category;
 use App\Models\Transaction;
+use App\Models\TransactionMeta;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\UploadedFile;
@@ -41,11 +42,13 @@ class TransactionImportService
                 $category = null;
                 switch($type) {
                     case static::TYPE_TD_VISA:
-                        list($date, $name, $debit, $credit) = $row;
+                        list($date, $originalName, $debit, $credit) = $row;
+                        $name = $originalName;
                         $amount = str_replace(',', '', empty($debit) ? $credit * -1 : $debit);
                         break;
                     case static::TYPE_SCOTIA_DEBIT:
-                        list($date, $credit, $debit, $scotiaType, $name) = $row;
+                        list($date, $credit, $debit, $scotiaType, $originalName) = $row;
+                        $name = $originalName;
                         $amount = trim($debit) == '-' ? $credit : $debit;
                         $scotiaType = trim($scotiaType);
                             
@@ -59,29 +62,41 @@ class TransactionImportService
                         } else if (strcasecmp($scotiaType, 'Investment') == 0) {
                             $category = Category::CATEGORY_INVESTMENT;
                         }
-
+                        
                         break;
                     case static::TYPE_SCOTIA_AMEX:
-                        list($date, $name, $amount) = $row;
+                        list($date, $originalName, $amount) = $row;
                         $amount = str_replace(',', '', $amount * -1);
-                        $name = Str::title($name);
+                        $name = Str::title($originalName);
                         break;
                     case static::TYPE_BBB:
                     default:
-                        list($date, $name, $amount) = $row;
+                        list($date, $originalName, $amount) = $row;
+                        $name = $originalName;
                         $amount = str_replace(',', '', $amount);
                         $type = null;
                         break;
                     }
 
                 $date = Carbon::createFromFormat('m/d/Y', $date)->startOfDay()->shiftTimezone('America/Toronto');
-                Transaction::createEntry([
+                $transaction = Transaction::createEntry([
                     'name' => $name, 
                     'amount' => $amount,
                     'created_at' => $date,
                     'category' => $category,
                     'account' => $type,
                 ]);
+                $transaction->meta()->create([
+                    'type' => 'original name',
+                    'value' => $originalName,
+                ]);
+                if (isset($scotiaType)) {
+                    $transaction->meta()->create([
+                        'type' => 'scotia type',
+                        'value' => $scotiaType,
+                    ]);
+                }
+
                 $index++;
             }
             Db::commit();

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Transaction extends Model
@@ -28,7 +29,13 @@ class Transaction extends Model
         return $this->belongsToMany(Category::class, 'transaction_category');
     }
 
-    public static function createEntry($attributes = []) {
+    public function meta() : HasMany
+    {
+        return $this->hasMany(TransactionMeta::class);
+    }
+
+    public static function createEntry($attributes = [])
+    {
         // if name matches a category, use it
         $categories = array_map(function ($value) { return strtolower($value); }, Category::CATEGORIES);
         
@@ -38,6 +45,6 @@ class Transaction extends Model
             $attributes['category'] = Category::CATEGORY_ETRANSFER;
         }
         
-        return self::create($attributes);
+        return self::create($attributes)->first();
     }
 }
