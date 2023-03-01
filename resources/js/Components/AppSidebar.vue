@@ -7,14 +7,16 @@
     </Link>
   </CSidebarBrand>
   <CSidebarNav>
-    <li class="nav-title">Nav Title</li>
-    <CNavItem href="#">
+    <li class="nav-title">
+      Hello, there! :3
+    </li>
+    <CNavItem :href="route('dashboard')">
       <CIcon class="sidebarIcon" :icon="cilSpeedometer"/>
-      Nav item
+      Dashboard
     </CNavItem>
-    <CNavItem href="#">
-        <CIcon class="sidebarIcon" :icon="cilSpeedometer"/>
-        With badge
+    <CNavItem :href="route('importer')">
+        <CIcon class="sidebarIcon" :icon="cilDataTransferUp"/>
+        Importer
         <CBadge color="primary ms-auto">NEW</CBadge>
     </CNavItem>
     <CNavGroup>
@@ -45,7 +47,7 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { CSidebar, CSidebarBrand, CSidebarNav, CNavItem, CBadge, CNavGroup, CSidebarToggler } from '@coreui/vue';
 import { CIcon } from '@coreui/icons-vue';
-import { cilSpeedometer, cilPuzzle } from '@coreui/icons';
+import { cilSpeedometer, cilDataTransferUp, cilPuzzle } from '@coreui/icons';
 import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 
@@ -63,6 +65,7 @@ export default {
       sidebarUnfoldable: computed(() => store.state.sidebarUnfoldable), 
       sidebarVisible: computed(() => store.state.sidebarVisible),
       cilSpeedometer,
+      cilDataTransferUp,
       cilPuzzle,
     }
   },

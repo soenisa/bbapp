@@ -44,14 +44,21 @@ class TransactionImportService
                     case static::TYPE_TD_VISA:
                         list($date, $originalName, $debit, $credit) = $row;
                         $name = $originalName;
+
+                        if (strcasecmp($name, 'SCOTIABANK PAYMENT') == 0) {
+                            // credit card payment, skip as it's accounted for in other transactions
+                            continue 2;
+                        }
+
                         $amount = str_replace(',', '', empty($debit) ? $credit * -1 : $debit);
+                        $name = Str::title($name);
                         break;
                     case static::TYPE_SCOTIA_DEBIT:
-                        list($date, $credit, $debit, $scotiaType, $originalName) = $row;
+                        list($date, $amount, $something, $scotiaType, $originalName) = $row;
                         $name = $originalName;
-                        $amount = trim($debit) == '-' ? $credit : $debit;
+                        $amount = -$amount;
                         $scotiaType = trim($scotiaType);
-                            
+
                         if (strcasecmp($scotiaType, 'ABM Withdrawal') == 0) {
                             $category = Category::CATEGORY_ATM_WITHDRAWAL;
                             $name = 'Cash Withdrawal';
@@ -61,11 +68,28 @@ class TransactionImportService
                             $category = Category::CATEGORY_INSURANCE;
                         } else if (strcasecmp($scotiaType, 'Investment') == 0) {
                             $category = Category::CATEGORY_INVESTMENT;
+                        } else if (strcasecmp($scotiaType, 'CRD. Card Bill Payment') == 0
+                            || strcasecmp($name, 'TS-TD VISA') == 0
+                            || strcasecmp($name, 'MB-CREDIT CARD/LOC PAY.') == 0) {
+                            // credit card payment, skip as it's accounted for in other transactions
+                            continue 2;
                         }
-                        
+
+                        if (empty($name)) {
+                            $name = $scotiaType;
+                        }
+
+                        $name = Str::title($name);
                         break;
                     case static::TYPE_SCOTIA_AMEX:
                         list($date, $originalName, $amount) = $row;
+                        $name = trim($originalName);
+
+                        if(str_starts_with($name, 'SCOTIABANK TRANSIT 40022 TORONTO')) {
+                            // credit card payment, skip as it's accounted for in other transactions
+                            continue 2;
+                        }
+
                         $amount = str_replace(',', '', $amount * -1);
                         $name = Str::title($originalName);
                         break;
@@ -78,7 +102,7 @@ class TransactionImportService
                         break;
                     }
 
-                $date = Carbon::createFromFormat('m/d/Y', $date)->startOfDay()->shiftTimezone('America/Toronto');
+                $date = Carbon::createFromFormat('m/d/Y', $date)->startOfDay()->shiftTimezone('America/Toronto')->utc();
                 $transaction = Transaction::createEntry([
                     'name' => $name, 
                     'amount' => $amount,

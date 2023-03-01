@@ -1,18 +1,17 @@
 <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head } from "@inertiajs/inertia-vue3";
-import { TransactionsTable } from "@/Components/Transactions";
+import { TransactionsImport } from "@/Components/Transactions";
 </script>
 
 <template>
-  <Head title="Dashboard" />
+  <Head title="Importer" />
 
   <BreezeAuthenticatedLayout>
     <CCard>
-      <CCardHeader component="h5">Transactions</CCardHeader>
+      <CCardHeader component="h5">Importer</CCardHeader>
       <CCardBody>
-        <!-- <CCardTitle>Transactions</CCardTitle> -->
-        <TransactionsTable />
+        <TransactionsImport />
       </CCardBody>
     </CCard>
   </BreezeAuthenticatedLayout>

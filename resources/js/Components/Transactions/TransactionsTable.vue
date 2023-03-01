@@ -1,4 +1,6 @@
 <template>
+<div>
+    <SummaryPanel />
     <div class="flex justify-between">
         <CCardText class="fw-bold align-self-end">
             Total spent: {{ formatAmount(total) }}
@@ -40,7 +42,7 @@
             </CTableRow>
         </CTableHead>
         <CTableBody>
-            <CTableRow v-for="(transaction, index) in transactions" :key="transaction.id">
+            <CTableRow v-for="(transaction, index) in filter.transactions" :key="transaction.id">
                 <CTableHeaderCell scope="row">{{ index + 1 }}</CTableHeaderCell>
                 <CTableDataCell>{{ transaction.name }}</CTableDataCell>
                 <CTableDataCell class="fw-bold font-monospace" v-bind:class="amountClass(transaction.amount)">{{ formatAmount(transaction.amount ?? 0) }}</CTableDataCell>
@@ -50,6 +52,7 @@
             </CTableRow>
         </CTableBody>
     </CTable>
+    </div>
 </template>
 
 <style>
@@ -59,13 +62,16 @@
 </style>
 
 <script>
+import SummaryPanel from  "./SummaryPanel";
 import { CTable, CTableBody, CTableRow, CTableDataCell, CTableHeaderCell, CTableHead,  } from '@coreui/vue';
 import moment from 'moment';
+import {filter} from "./filter.js"
 
 export default {
     name: "TransactionsTable",
     components: {
-        CTable
+        CTable, 
+        SummaryPanel
     },
     mounted: function() {
         this.getCategories();
@@ -73,12 +79,12 @@ export default {
     },
     data: function () {
         return {
-            transactions: [],
             categories: [],
             total: 0,
             fromDate: null,
             toDate: null,
-            category: null
+            category: null,
+            filter
         };
     },
     methods: {
@@ -86,20 +92,22 @@ export default {
             return moment(date).format('ddd, D MMM yyyy')
         },
         getTransactions: function() {
+            filter.setFromDate(this.fromDate);
+            filter.setToDate(this.toDate);
+            
             axios.get(route('transactions.index'), {
                         params: {
-                            fromDate: this.fromDate,
-                            toDate: this.toDate,
+                            fromDate: filter.fromDate,
+                            toDate: filter.toDate,
                             category: this.category == 'All' ? null  : this.category
                         }
                 })
                 .then(response => {
-                    this.transactions = response.data.data;
-                    this.total = this.transactions.reduce( function(a, b){
+                    filter.transactions = response.data.data;
+                    this.total = filter.transactions.reduce( function(a, b){
                         return a + parseFloat(b.amount);
                     }, 0);
                     this.total = this.total.toFixed(2);
-                    console.log(this.transactions);
                 });
         },
         getCategories: function() {

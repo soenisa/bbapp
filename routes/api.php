@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,4 @@ Route::prefix('transactions')
 // resource controllers
 Route::apiResource('transactions', TransactionController::class);
 Route::apiResource('categories', CategoriesController::class);
+Route::apiResource('summaries', SummaryController::class);
