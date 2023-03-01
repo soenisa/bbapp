@@ -30,6 +30,7 @@ class SummaryController extends Controller
         $categories = $transactions->groupBy('category');
 
         Log::info('', ['cats' => $categories]);
+        Log::info('', ['from' => $fromDate->toString(), 'to' => $toDate->toString()]);
 
         $results = [];
         foreach ($categories as $category => $amounts) {
@@ -39,6 +40,7 @@ class SummaryController extends Controller
             $sum = $amounts->sum('amount');
             $results[$id]['value'] = $sum;
             $results[$id]['status'] = 'low';
+            Log::info($id);
             
             // TODO: get target for this month and compare it against the sum to find the status
             // $results[$id]['status'] = $amounts->sum();

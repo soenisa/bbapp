@@ -65,6 +65,7 @@
 import SummaryPanel from  "./SummaryPanel";
 import { CTable, CTableBody, CTableRow, CTableDataCell, CTableHeaderCell, CTableHead,  } from '@coreui/vue';
 import moment from 'moment';
+import {filter} from "./filter.js"
 
 export default {
     name: "TransactionsTable",
@@ -91,10 +92,13 @@ export default {
             return moment(date).format('ddd, D MMM yyyy')
         },
         getTransactions: function() {
+            filter.setFromDate(this.fromDate);
+            filter.setToDate(this.toDate);
+            
             axios.get(route('transactions.index'), {
                         params: {
-                            fromDate: this.fromDate,
-                            toDate: this.toDate,
+                            fromDate: filter.fromDate,
+                            toDate: filter.toDate,
                             category: this.category == 'All' ? null  : this.category
                         }
                 })

@@ -102,7 +102,7 @@ class TransactionImportService
                         break;
                     }
 
-                $date = Carbon::createFromFormat('m/d/Y', $date)->startOfDay()->shiftTimezone('America/Toronto');
+                $date = Carbon::createFromFormat('m/d/Y', $date)->startOfDay()->shiftTimezone('America/Toronto')->utc();
                 $transaction = Transaction::createEntry([
                     'name' => $name, 
                     'amount' => $amount,

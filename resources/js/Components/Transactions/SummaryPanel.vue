@@ -16,6 +16,7 @@
 import { CRow, CCol, CWidgetStatsF } from '@coreui/vue';
 import { CIcon } from '@coreui/icons-vue';
 import { cilMoodGood, cilMoodVeryGood, cilMoodBad } from '@coreui/icons';
+import {filter} from './filter.js'
 
 export default {
   name: "SummaryPanel",
@@ -86,6 +87,8 @@ export default {
       // TODO: pass fromDate from TransactionsTable as a parent property into this component?
         axios.get(route('summaries.index'), {
                 params: {
+                    fromDate: filter.fromDate,
+                    toDate: filter.toDate
                 }
               })
             .then(response => {
