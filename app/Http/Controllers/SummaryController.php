@@ -11,10 +11,15 @@ use Illuminate\Support\Str;
 class SummaryController extends Controller
 {
     public function index(Request $request) {
-        $month = $request->input('month', Carbon::now()->month);
-        $year = $request->input('year', Carbon::now()->year);
-        $fromDate = Carbon::create($year, $month)->startOfMonth()->startOfDay();
-        $toDate = Carbon::create($year, $month)->endOfMonth()->endOfDay();
+        // $month = $request->input('month', Carbon::now()->month);
+        // $year = $request->input('year', Carbon::now()->year);
+        // $fromDate = Carbon::create($year, $month)->startOfMonth()->startOfDay();
+        // $toDate = Carbon::create($year, $month)->endOfMonth()->endOfDay();
+
+        $fromDate = $request->input('fromDate', null);
+        $fromDate = empty($fromDate) ? $fromDate : Carbon::createFromFormat('Y-m-d', $fromDate)->startOfDay();
+        $toDate = $request->input('toDate', null);
+        $toDate = empty($toDate) ? $toDate : Carbon::createFromFormat('Y-m-d', $toDate)->endOfDay();
         
         $query = Transaction::query();
         $query = $query->whereNotNull('category');
@@ -30,7 +35,7 @@ class SummaryController extends Controller
         $categories = $transactions->groupBy('category');
 
         Log::info('', ['cats' => $categories]);
-        Log::info('', ['from' => $fromDate->toString(), 'to' => $toDate->toString()]);
+        // Log::info('', ['from' => $fromDate->toString(), 'to' => $toDate->toString()]);
 
         $results = [];
         foreach ($categories as $category => $amounts) {

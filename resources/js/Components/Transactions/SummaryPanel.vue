@@ -38,6 +38,7 @@ export default {
   },
   data() {
       return {
+        filter,
         FILE: null,
         importTypes: ['big-bad-budget', 'td-visa', 'scotia-debit', 'scotia-amex'],
         type: null,

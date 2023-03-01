@@ -33201,9 +33201,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _coreui_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @coreui/vue */ "./node_modules/@coreui/vue/dist/index.es.js");
 /* harmony import */ var _coreui_icons_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @coreui/icons-vue */ "./node_modules/@coreui/icons-vue/dist/index.es.js");
-/* harmony import */ var _coreui_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @coreui/icons */ "./node_modules/@coreui/icons/js/free/cil-mood-good.js");
-/* harmony import */ var _coreui_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @coreui/icons */ "./node_modules/@coreui/icons/js/free/cil-mood-very-good.js");
-/* harmony import */ var _coreui_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @coreui/icons */ "./node_modules/@coreui/icons/js/free/cil-mood-bad.js");
+/* harmony import */ var _coreui_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @coreui/icons */ "./node_modules/@coreui/icons/js/free/cil-mood-good.js");
+/* harmony import */ var _coreui_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @coreui/icons */ "./node_modules/@coreui/icons/js/free/cil-mood-very-good.js");
+/* harmony import */ var _coreui_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @coreui/icons */ "./node_modules/@coreui/icons/js/free/cil-mood-bad.js");
+/* harmony import */ var _filter_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./filter.js */ "./resources/js/Components/Transactions/filter.js");
+
 
 
 
@@ -33217,9 +33219,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   setup: function setup() {
     return {
-      cilMoodGood: _coreui_icons__WEBPACK_IMPORTED_MODULE_2__.cilMoodGood,
-      cilMoodVeryGood: _coreui_icons__WEBPACK_IMPORTED_MODULE_3__.cilMoodVeryGood,
-      cilMoodBad: _coreui_icons__WEBPACK_IMPORTED_MODULE_4__.cilMoodBad
+      cilMoodGood: _coreui_icons__WEBPACK_IMPORTED_MODULE_3__.cilMoodGood,
+      cilMoodVeryGood: _coreui_icons__WEBPACK_IMPORTED_MODULE_4__.cilMoodVeryGood,
+      cilMoodBad: _coreui_icons__WEBPACK_IMPORTED_MODULE_5__.cilMoodBad
     };
   },
   mounted: function mounted() {
@@ -33227,6 +33229,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      filter: _filter_js__WEBPACK_IMPORTED_MODULE_2__.filter,
       FILE: null,
       importTypes: ['big-bad-budget', 'td-visa', 'scotia-debit', 'scotia-amex'],
       type: null,
@@ -33297,12 +33300,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     getIcon: function getIcon(status) {
       if (status == 'low') {
-        return _coreui_icons__WEBPACK_IMPORTED_MODULE_3__.cilMoodVeryGood;
+        return _coreui_icons__WEBPACK_IMPORTED_MODULE_4__.cilMoodVeryGood;
       } else if (status == 'mid') {
-        return _coreui_icons__WEBPACK_IMPORTED_MODULE_2__.cilMoodGood;
+        return _coreui_icons__WEBPACK_IMPORTED_MODULE_3__.cilMoodGood;
       }
 
-      return _coreui_icons__WEBPACK_IMPORTED_MODULE_4__.cilMoodBad;
+      return _coreui_icons__WEBPACK_IMPORTED_MODULE_5__.cilMoodBad;
     },
     formatAmount: function formatAmount(amount) {
       var formatter = new Intl.NumberFormat('en-US', {
@@ -33316,7 +33319,10 @@ __webpack_require__.r(__webpack_exports__);
 
       // TODO: pass fromDate from TransactionsTable as a parent property into this component?
       axios.get(route('summaries.index'), {
-        params: {}
+        params: {
+          fromDate: _filter_js__WEBPACK_IMPORTED_MODULE_2__.filter.fromDate,
+          toDate: _filter_js__WEBPACK_IMPORTED_MODULE_2__.filter.toDate
+        }
       }).then(function (response) {
         _this.summaries = response.data;
       });
@@ -33392,6 +33398,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _coreui_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @coreui/vue */ "./node_modules/@coreui/vue/dist/index.es.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _filter_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./filter.js */ "./resources/js/Components/Transactions/filter.js");
+
 
 
 
@@ -33407,12 +33415,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      transactions: [],
+      // transactions: [],
       categories: [],
       total: 0,
       fromDate: null,
       toDate: null,
-      category: null
+      category: null,
+      filter: _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter
     };
   },
   methods: {
@@ -33422,19 +33431,20 @@ __webpack_require__.r(__webpack_exports__);
     getTransactions: function getTransactions() {
       var _this = this;
 
+      _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter.setFromDate(this.fromDate);
+      _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter.setToDate(this.toDate);
       axios.get(route('transactions.index'), {
         params: {
-          fromDate: this.fromDate,
-          toDate: this.toDate,
+          fromDate: _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter.fromDate,
+          toDate: _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter.toDate,
           category: this.category == 'All' ? null : this.category
         }
       }).then(function (response) {
-        _this.transactions = response.data.data;
-        _this.total = _this.transactions.reduce(function (a, b) {
+        _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter.transactions = response.data.data;
+        _this.total = _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter.transactions.reduce(function (a, b) {
           return a + parseFloat(b.amount);
         }, 0);
         _this.total = _this.total.toFixed(2);
-        console.log(_this.transactions);
       });
     },
     getCategories: function getCategories() {
@@ -34745,7 +34755,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CTableBody, null, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.transactions, function (transaction, index) {
+          return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.filter.transactions, function (transaction, index) {
             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_CTableRow, {
               key: transaction.id
             }, {
@@ -36297,6 +36307,33 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   });
 }
+
+/***/ }),
+
+/***/ "./resources/js/Components/Transactions/filter.js":
+/*!********************************************************!*\
+  !*** ./resources/js/Components/Transactions/filter.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "filter": () => (/* binding */ filter)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var filter = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+  fromDate: null,
+  toDate: null,
+  transactions: [],
+  setFromDate: function setFromDate(value) {
+    this.fromDate = value;
+  },
+  setToDate: function setToDate(value) {
+    this.toDate = value;
+  }
+});
 
 /***/ }),
 

@@ -42,7 +42,7 @@
             </CTableRow>
         </CTableHead>
         <CTableBody>
-            <CTableRow v-for="(transaction, index) in transactions" :key="transaction.id">
+            <CTableRow v-for="(transaction, index) in filter.transactions" :key="transaction.id">
                 <CTableHeaderCell scope="row">{{ index + 1 }}</CTableHeaderCell>
                 <CTableDataCell>{{ transaction.name }}</CTableDataCell>
                 <CTableDataCell class="fw-bold font-monospace" v-bind:class="amountClass(transaction.amount)">{{ formatAmount(transaction.amount ?? 0) }}</CTableDataCell>
@@ -79,12 +79,13 @@ export default {
     },
     data: function () {
         return {
-            transactions: [],
+            // transactions: [],
             categories: [],
             total: 0,
             fromDate: null,
             toDate: null,
-            category: null
+            category: null,
+            filter
         };
     },
     methods: {
@@ -103,12 +104,11 @@ export default {
                         }
                 })
                 .then(response => {
-                    this.transactions = response.data.data;
-                    this.total = this.transactions.reduce( function(a, b){
+                    filter.transactions = response.data.data;
+                    this.total = filter.transactions.reduce( function(a, b){
                         return a + parseFloat(b.amount);
                     }, 0);
                     this.total = this.total.toFixed(2);
-                    console.log(this.transactions);
                 });
         },
         getCategories: function() {

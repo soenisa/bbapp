@@ -1,6 +1,9 @@
-export const filter = ref({
+import { reactive } from 'vue';
+
+export const filter = reactive({
     fromDate: null,
     toDate: null,
+    transactions: [],
     setFromDate(value) {
         this.fromDate = value;
     },
