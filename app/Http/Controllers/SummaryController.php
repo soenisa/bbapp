@@ -11,11 +11,6 @@ use Illuminate\Support\Str;
 class SummaryController extends Controller
 {
     public function index(Request $request) {
-        // $month = $request->input('month', Carbon::now()->month);
-        // $year = $request->input('year', Carbon::now()->year);
-        // $fromDate = Carbon::create($year, $month)->startOfMonth()->startOfDay();
-        // $toDate = Carbon::create($year, $month)->endOfMonth()->endOfDay();
-
         $fromDate = $request->input('fromDate', null);
         $fromDate = empty($fromDate) ? $fromDate : Carbon::createFromFormat('Y-m-d', $fromDate)->startOfDay();
         $toDate = $request->input('toDate', null);

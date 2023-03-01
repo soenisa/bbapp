@@ -33317,7 +33317,6 @@ __webpack_require__.r(__webpack_exports__);
     getSummaries: function getSummaries() {
       var _this = this;
 
-      // TODO: pass fromDate from TransactionsTable as a parent property into this component?
       axios.get(route('summaries.index'), {
         params: {
           fromDate: _filter_js__WEBPACK_IMPORTED_MODULE_2__.filter.fromDate,
@@ -33415,7 +33414,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      // transactions: [],
       categories: [],
       total: 0,
       fromDate: null,

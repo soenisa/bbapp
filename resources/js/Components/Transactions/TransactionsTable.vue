@@ -79,7 +79,6 @@ export default {
     },
     data: function () {
         return {
-            // transactions: [],
             categories: [],
             total: 0,
             fromDate: null,

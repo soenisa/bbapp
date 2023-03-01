@@ -85,7 +85,6 @@ export default {
         return `${amount < 0 ? '-' : ' '}${formatter.format(Math.abs(amount))}`;
     },
     getSummaries: function() {
-      // TODO: pass fromDate from TransactionsTable as a parent property into this component?
         axios.get(route('summaries.index'), {
                 params: {
                     fromDate: filter.fromDate,
