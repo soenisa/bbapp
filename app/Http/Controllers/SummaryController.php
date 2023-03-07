@@ -30,7 +30,6 @@ class SummaryController extends Controller
         $categories = $transactions->groupBy('category');
 
         Log::info('', ['cats' => $categories]);
-        // Log::info('', ['from' => $fromDate->toString(), 'to' => $toDate->toString()]);
 
         $results = [];
         foreach ($categories as $category => $amounts) {

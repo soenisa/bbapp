@@ -92,8 +92,10 @@ export default {
             return moment(date).format('ddd, D MMM yyyy')
         },
         getTransactions: function() {
-            filter.setFromDate(this.fromDate);
-            filter.setToDate(this.toDate);
+            filter.fromDate = this.fromDate;
+            filter.toDate = this.toDate;
+            // filter.setFromDate(this.fromDate);
+            // filter.setToDate(this.toDate);
             
             axios.get(route('transactions.index'), {
                         params: {

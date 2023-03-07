@@ -9,6 +9,7 @@
             </CWidgetStatsF>
           </CCol>
         </CRow>
+        <CButton class="align-self-end" @click="getSummaries" color="primary" style="height: 38px;">Refresh</CButton>
     </div>
 </template>
 

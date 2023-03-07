@@ -110,10 +110,13 @@ class TransactionImportService
                     'category' => $category,
                     'account' => $type,
                 ]);
-                $transaction->meta()->create([
-                    'type' => 'original name',
-                    'value' => $originalName,
-                ]);
+
+                if (!empty($originalName)) {
+                    $transaction->meta()->create([
+                        'type' => 'original name',
+                        'value' => $originalName,
+                    ]);
+                }
                 if (isset($scotiaType)) {
                     $transaction->meta()->create([
                         'type' => 'scotia type',

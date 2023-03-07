@@ -45,6 +45,6 @@ class Transaction extends Model
             $attributes['category'] = Category::CATEGORY_ETRANSFER;
         }
         
-        return self::create($attributes)->first();
+        return self::create($attributes);
     }
 }

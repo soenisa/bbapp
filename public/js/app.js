@@ -33429,8 +33429,10 @@ __webpack_require__.r(__webpack_exports__);
     getTransactions: function getTransactions() {
       var _this = this;
 
-      _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter.setFromDate(this.fromDate);
-      _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter.setToDate(this.toDate);
+      _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter.fromDate = this.fromDate;
+      _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter.toDate = this.toDate; // filter.setFromDate(this.fromDate);
+      // filter.setToDate(this.toDate);
+
       axios.get(route('transactions.index'), {
         params: {
           fromDate: _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter.fromDate,
@@ -34333,6 +34335,9 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   id: "summary-panel"
 };
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Refresh");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_CIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CIcon");
 
@@ -34341,6 +34346,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_CCol = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CCol");
 
   var _component_CRow = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CRow");
+
+  var _component_CButton = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CButton");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CRow, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -34387,7 +34394,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]);
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CButton, {
+    "class": "align-self-end",
+    onClick: $options.getSummaries,
+    color: "primary",
+    style: {
+      "height": "38px"
+    }
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_2];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["onClick"])]);
 }
 
 /***/ }),
