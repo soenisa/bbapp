@@ -14,6 +14,12 @@
       <CIcon class="sidebarIcon" :icon="cilSpeedometer"/>
       Dashboard
     </CNavItem>
+    <CNavItem>
+      <CNavLink :href="route('insights')">
+      <CIcon class="sidebarIcon" :icon="cilChartLine"/>
+        Insights
+      </CNavLink>
+    </CNavItem>
     <CNavItem :href="route('importer')">
         <CIcon class="sidebarIcon" :icon="cilDataTransferUp"/>
         Importer
@@ -47,7 +53,7 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { CSidebar, CSidebarBrand, CSidebarNav, CNavItem, CBadge, CNavGroup, CSidebarToggler } from '@coreui/vue';
 import { CIcon } from '@coreui/icons-vue';
-import { cilSpeedometer, cilDataTransferUp, cilPuzzle } from '@coreui/icons';
+import { cilSpeedometer, cilDataTransferUp, cilChartLine, cilPuzzle } from '@coreui/icons';
 import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 
@@ -67,6 +73,7 @@ export default {
       cilSpeedometer,
       cilDataTransferUp,
       cilPuzzle,
+      cilChartLine
     }
   },
 }

@@ -6,7 +6,6 @@
       <CCollapse class="header-collapse" :visible="visible">
         <CHeaderNav>
           <CNavItem>
-            <!-- Does this need to be wrapped in a Link? -->
             <CNavLink :href="route('dashboard')" active>
               Dashboard
             </CNavLink>

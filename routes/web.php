@@ -28,6 +28,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/insights', function () {
+    return Inertia::render('Insights');
+})->middleware(['auth', 'verified'])->name('insights');
+
 Route::get('/importer', function () {
     return Inertia::render('Importer');
 })->middleware(['auth', 'verified'])->name('importer');

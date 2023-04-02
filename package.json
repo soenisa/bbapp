@@ -30,7 +30,9 @@
         "@coreui/icons": "^2.1.0",
         "@coreui/icons-vue": "^2.0.0",
         "@coreui/vue": "^4.2.0",
+        "apexcharts": "^3.37.2",
         "moment": "^2.29.1",
+        "vue3-apexcharts": "^1.4.1",
         "vuex": "^4.0.2"
     }
 }
