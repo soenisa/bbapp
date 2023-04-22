@@ -67,6 +67,7 @@ import { CTable, CTableBody, CTableRow, CTableDataCell, CTableHeaderCell, CTable
 import moment from 'moment';
 import {filter} from "./filter.js"
 
+
 export default {
     name: "TransactionsTable",
     components: {
@@ -84,7 +85,7 @@ export default {
             fromDate: null,
             toDate: null,
             category: null,
-            filter
+            filter,
         };
     },
     methods: {
@@ -94,8 +95,6 @@ export default {
         getTransactions: function() {
             filter.fromDate = this.fromDate;
             filter.toDate = this.toDate;
-            // filter.setFromDate(this.fromDate);
-            // filter.setToDate(this.toDate);
             
             axios.get(route('transactions.index'), {
                         params: {

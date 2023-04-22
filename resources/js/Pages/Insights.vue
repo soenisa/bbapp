@@ -1,20 +1,19 @@
+<script setup>
+import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import { Head } from "@inertiajs/inertia-vue3";
+import Savings from "@/Components/Insights/Charts/Savings.vue";
+</script>
+
 <template>
-  <Head title="Insights" />
+  <Head title="Dashboard" />
 
   <BreezeAuthenticatedLayout>
     <CCard>
       <CCardHeader component="h5">Insights</CCardHeader>
       <CCardBody>
-        <TransactionsTable />
+        <!-- <CCardTitle>Transactions</CCardTitle> -->
+        <Savings />
       </CCardBody>
     </CCard>
   </BreezeAuthenticatedLayout>
 </template>
-
-<script setup>
-import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
-import { Head } from "@inertiajs/inertia-vue3";
-import { TransactionsTable } from "@/Components/Transactions";
-
-
-</script>
