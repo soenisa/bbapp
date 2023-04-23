@@ -17,7 +17,7 @@
 import { CRow, CCol, CWidgetStatsF } from '@coreui/vue';
 import { CIcon } from '@coreui/icons-vue';
 import { cilMoodGood, cilMoodVeryGood, cilMoodBad } from '@coreui/icons';
-import {filter} from './filter.js'
+import { filter } from './filter.js'
 
 export default {
   name: "SummaryPanel",
