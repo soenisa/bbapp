@@ -1,7 +1,7 @@
 <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head } from "@inertiajs/inertia-vue3";
-import { TransactionsTable } from "@/Components/Transactions";
+import { TransactionsTable, TransactionsFilter, SummaryPanel } from "@/Components/Transactions";
 </script>
 
 <template>
@@ -11,7 +11,9 @@ import { TransactionsTable } from "@/Components/Transactions";
     <CCard>
       <CCardHeader component="h5">Transactions</CCardHeader>
       <CCardBody>
-        <!-- <CCardTitle>Transactions</CCardTitle> -->
+        <CCardTitle>Transactions</CCardTitle>
+        <SummaryPanel />
+        <TransactionsFilter />
         <TransactionsTable />
       </CCardBody>
     </CCard>

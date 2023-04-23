@@ -1,7 +1,5 @@
 <template>
 <div>
-    <SummaryPanel />
-    <TransactionsFilter />
     <CTable striped>
         <CTableHead>
             <CTableRow>
@@ -34,8 +32,6 @@
 </style>
 
 <script>
-import SummaryPanel from  "./SummaryPanel";
-import TransactionsFilter from  "./TransactionsFilter";
 import { CTable, CTableBody, CTableRow, CTableDataCell, CTableHeaderCell, CTableHead,  } from '@coreui/vue';
 import { filter } from "./filter.js";
 import formatHelper from "@/Helpers/formatHelper.js";
@@ -44,9 +40,7 @@ export default {
     name: "TransactionsTable",
     mixins: [formatHelper],
     components: {
-        CTable, 
-        SummaryPanel,
-        TransactionsFilter,
+        CTable
     },
     data: function () {
         return {

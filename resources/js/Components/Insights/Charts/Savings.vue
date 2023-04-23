@@ -13,6 +13,9 @@ export default {
   components: {
     VueApexCharts
   },
+  mounted: function() {
+    this.fillChart();
+  },
   data: function() {
     return {
       options: {
@@ -27,6 +30,11 @@ export default {
         name: 'series-1',
         data: [30, 40, 45, 50, 49, 60, 70, 91]
       }]
+    }
+  },
+  methods: {
+    fillChart: function() {
+        console.log(filter.transactions);
     }
   }
 }

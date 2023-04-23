@@ -34,8 +34,8 @@
 import { filter } from "./filter.js"
 import formatHelper from "@/Helpers/formatHelper.js";
 
-// The filtering component used by transactions table and insights view should live here
-// should update the filter.js file so the transactions filter and results array can be used in multiple components
+// TODO: allow user to pass in what type of data they want in return
+// add an endpoint to get transactions formatted as a series readable by apex charts?
 
 export default {
     name: "TransactionsFilter",
@@ -60,7 +60,7 @@ export default {
         getTransactions: function() {
             filter.fromDate = this.fromDate;
             filter.toDate = this.toDate;
-            
+            console.log('alksdjf');
             axios.get(route('transactions.index'), {
                         params: {
                             fromDate: filter.fromDate,
@@ -74,6 +74,7 @@ export default {
                         return a + parseFloat(b.amount);
                     }, 0);
                     this.total = this.total.toFixed(2);
+                    console.log(filter.transactions);
                 });
         },
         getCategories: function() {

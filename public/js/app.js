@@ -33223,6 +33223,9 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     VueApexCharts: (vue3_apexcharts__WEBPACK_IMPORTED_MODULE_1___default())
   },
+  mounted: function mounted() {
+    this.fillChart();
+  },
   data: function data() {
     return {
       options: {
@@ -33238,6 +33241,11 @@ __webpack_require__.r(__webpack_exports__);
         data: [30, 40, 45, 50, 49, 60, 70, 91]
       }]
     };
+  },
+  methods: {
+    fillChart: function fillChart() {
+      console.log(_Transactions_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.transactions);
+    }
   }
 });
 
@@ -33427,8 +33435,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _filter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./filter.js */ "./resources/js/Components/Transactions/filter.js");
 /* harmony import */ var _Helpers_formatHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Helpers/formatHelper.js */ "./resources/js/Helpers/formatHelper.js");
 
- // The filtering component used by transactions table and insights view should live here
-// should update the filter.js file so the transactions filter and results array can be used in multiple components
+ // TODO: allow user to pass in what type of data they want in return
+// add an endpoint to get transactions formatted as a series readable by apex charts?
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "TransactionsFilter",
@@ -33454,6 +33462,7 @@ __webpack_require__.r(__webpack_exports__);
 
       _filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.fromDate = this.fromDate;
       _filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.toDate = this.toDate;
+      console.log('alksdjf');
       axios.get(route('transactions.index'), {
         params: {
           fromDate: _filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.fromDate,
@@ -33466,6 +33475,7 @@ __webpack_require__.r(__webpack_exports__);
           return a + parseFloat(b.amount);
         }, 0);
         _this.total = _this.total.toFixed(2);
+        console.log(_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.transactions);
       });
     },
     getCategories: function getCategories() {
@@ -33545,27 +33555,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _SummaryPanel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SummaryPanel */ "./resources/js/Components/Transactions/SummaryPanel.vue");
-/* harmony import */ var _TransactionsFilter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TransactionsFilter */ "./resources/js/Components/Transactions/TransactionsFilter.vue");
-/* harmony import */ var _coreui_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @coreui/vue */ "./node_modules/@coreui/vue/dist/index.es.js");
-/* harmony import */ var _filter_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./filter.js */ "./resources/js/Components/Transactions/filter.js");
-/* harmony import */ var _Helpers_formatHelper_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Helpers/formatHelper.js */ "./resources/js/Helpers/formatHelper.js");
-
-
+/* harmony import */ var _coreui_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @coreui/vue */ "./node_modules/@coreui/vue/dist/index.es.js");
+/* harmony import */ var _filter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./filter.js */ "./resources/js/Components/Transactions/filter.js");
+/* harmony import */ var _Helpers_formatHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Helpers/formatHelper.js */ "./resources/js/Helpers/formatHelper.js");
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "TransactionsTable",
-  mixins: [_Helpers_formatHelper_js__WEBPACK_IMPORTED_MODULE_4__["default"]],
+  mixins: [_Helpers_formatHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"]],
   components: {
-    CTable: _coreui_vue__WEBPACK_IMPORTED_MODULE_2__.CTable,
-    SummaryPanel: _SummaryPanel__WEBPACK_IMPORTED_MODULE_0__["default"],
-    TransactionsFilter: _TransactionsFilter__WEBPACK_IMPORTED_MODULE_1__["default"]
+    CTable: _coreui_vue__WEBPACK_IMPORTED_MODULE_0__.CTable
   },
   data: function data() {
     return {
-      filter: _filter_js__WEBPACK_IMPORTED_MODULE_3__.filter
+      filter: _filter_js__WEBPACK_IMPORTED_MODULE_1__.filter
     };
   },
   methods: {
@@ -34090,7 +34094,9 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
-      TransactionsTable: _Components_Transactions__WEBPACK_IMPORTED_MODULE_2__.TransactionsTable
+      TransactionsTable: _Components_Transactions__WEBPACK_IMPORTED_MODULE_2__.TransactionsTable,
+      TransactionsFilter: _Components_Transactions__WEBPACK_IMPORTED_MODULE_2__.TransactionsFilter,
+      SummaryPanel: _Components_Transactions__WEBPACK_IMPORTED_MODULE_2__.SummaryPanel
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -34151,7 +34157,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/Authenticated.vue */ "./resources/js/Layouts/Authenticated.vue");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _Components_Insights_Charts_Savings_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Insights/Charts/Savings.vue */ "./resources/js/Components/Insights/Charts/Savings.vue");
+/* harmony import */ var _Components_Insights_Charts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Insights/Charts */ "./resources/js/Components/Insights/Charts/index.js");
+/* harmony import */ var _Components_Transactions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/Transactions */ "./resources/js/Components/Transactions/index.js");
+
 
 
 
@@ -34162,7 +34170,8 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
-      Savings: _Components_Insights_Charts_Savings_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+      Savings: _Components_Insights_Charts__WEBPACK_IMPORTED_MODULE_2__.Savings,
+      TransactionsFilter: _Components_Transactions__WEBPACK_IMPORTED_MODULE_3__.TransactionsFilter
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -34879,10 +34888,6 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Created At");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_SummaryPanel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SummaryPanel");
-
-  var _component_TransactionsFilter = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TransactionsFilter");
-
   var _component_CTableHeaderCell = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CTableHeaderCell");
 
   var _component_CTableRow = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CTableRow");
@@ -34895,7 +34900,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_CTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CTable");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SummaryPanel), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TransactionsFilter), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CTable, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CTable, {
     striped: ""
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -35832,8 +35837,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Transactions");
 
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Transactions");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_CCardHeader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CCardHeader");
+
+  var _component_CCardTitle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CCardTitle");
 
   var _component_CCardBody = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CCardBody");
 
@@ -35856,7 +35865,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
           }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CCardBody, null, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <CCardTitle>Transactions</CCardTitle> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TransactionsTable"])];
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CCardTitle, null, {
+                "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                  return [_hoisted_2];
+                }),
+                _: 1
+                /* STABLE */
+
+              }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["SummaryPanel"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TransactionsFilter"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TransactionsTable"])];
             }),
             _: 1
             /* STABLE */
@@ -35980,7 +35996,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
           }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CCardBody, null, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <CCardTitle>Transactions</CCardTitle> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Savings"])];
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TransactionsFilter"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Savings"])];
             }),
             _: 1
             /* STABLE */
@@ -36613,6 +36629,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./resources/js/Components/Insights/Charts/index.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/Components/Insights/Charts/index.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Savings": () => (/* reexport safe */ _Savings__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _Savings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Savings */ "./resources/js/Components/Insights/Charts/Savings.vue");
+
+
+
+/***/ }),
+
 /***/ "./resources/js/Components/Transactions/filter.js":
 /*!********************************************************!*\
   !*** ./resources/js/Components/Transactions/filter.js ***!
@@ -36649,13 +36682,16 @@ var filter = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "SummaryPanel": () => (/* reexport safe */ _SummaryPanel_vue__WEBPACK_IMPORTED_MODULE_2__["default"]),
+/* harmony export */   "SummaryPanel": () => (/* reexport safe */ _SummaryPanel_vue__WEBPACK_IMPORTED_MODULE_3__["default"]),
+/* harmony export */   "TransactionsFilter": () => (/* reexport safe */ _TransactionsFilter_vue__WEBPACK_IMPORTED_MODULE_2__["default"]),
 /* harmony export */   "TransactionsImport": () => (/* reexport safe */ _TransactionsImport__WEBPACK_IMPORTED_MODULE_1__["default"]),
 /* harmony export */   "TransactionsTable": () => (/* reexport safe */ _TransactionsTable__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _TransactionsTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TransactionsTable */ "./resources/js/Components/Transactions/TransactionsTable.vue");
 /* harmony import */ var _TransactionsImport__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TransactionsImport */ "./resources/js/Components/Transactions/TransactionsImport.vue");
-/* harmony import */ var _SummaryPanel_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SummaryPanel.vue */ "./resources/js/Components/Transactions/SummaryPanel.vue");
+/* harmony import */ var _TransactionsFilter_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TransactionsFilter.vue */ "./resources/js/Components/Transactions/TransactionsFilter.vue");
+/* harmony import */ var _SummaryPanel_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SummaryPanel.vue */ "./resources/js/Components/Transactions/SummaryPanel.vue");
+
 
 
 
