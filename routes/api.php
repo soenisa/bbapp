@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\InsightsController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
@@ -24,6 +25,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('transactions')
 ->group(function() {
     Route::post('import', [TransactionController::class, 'import'])->name('transactions.import');
+});
+
+Route::prefix('insights')
+->group(function() {
+    Route::get('savings', [InsightsController::class, 'savings'])->name('insights.savings');
 });
 
 // resource controllers

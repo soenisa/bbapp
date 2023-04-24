@@ -33224,27 +33224,44 @@ __webpack_require__.r(__webpack_exports__);
     VueApexCharts: (vue3_apexcharts__WEBPACK_IMPORTED_MODULE_1___default())
   },
   mounted: function mounted() {
-    this.fillChart();
+    this.getInsights();
   },
   data: function data() {
     return {
       options: {
+        // width: "100%",
         chart: {
           id: 'vuechart-example'
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+          type: "datetime"
         }
       },
       series: [{
         name: 'series-1',
-        data: [30, 40, 45, 50, 49, 60, 70, 91]
+        data: []
       }]
     };
   },
   methods: {
-    fillChart: function fillChart() {
-      console.log(_Transactions_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.transactions);
+    fillChart: function fillChart() {},
+    getInsights: function getInsights() {
+      var _this = this;
+
+      _Transactions_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.fromDate = this.fromDate;
+      _Transactions_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.toDate = this.toDate;
+      axios.get(route('insights.savings'), {
+        params: {
+          fromDate: _Transactions_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.fromDate,
+          toDate: _Transactions_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.toDate
+        }
+      }).then(function (response) {
+        console.log(response);
+        _this.series = [{
+          name: 'series-1',
+          data: response.data
+        }];
+      });
     }
   }
 });
@@ -33462,7 +33479,6 @@ __webpack_require__.r(__webpack_exports__);
 
       _filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.fromDate = this.fromDate;
       _filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.toDate = this.toDate;
-      console.log('alksdjf');
       axios.get(route('transactions.index'), {
         params: {
           fromDate: _filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.fromDate,
@@ -33475,7 +33491,6 @@ __webpack_require__.r(__webpack_exports__);
           return a + parseFloat(b.amount);
         }, 0);
         _this.total = _this.total.toFixed(2);
-        console.log(_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.transactions);
       });
     },
     getCategories: function getCategories() {

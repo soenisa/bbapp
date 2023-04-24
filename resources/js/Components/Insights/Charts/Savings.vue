@@ -14,28 +14,46 @@ export default {
     VueApexCharts
   },
   mounted: function() {
-    this.fillChart();
+    this.getInsights();
   },
   data: function() {
     return {
       options: {
+        // width: "100%",
         chart: {
           id: 'vuechart-example'
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+            type: "datetime"
         }
       },
       series: [{
         name: 'series-1',
-        data: [30, 40, 45, 50, 49, 60, 70, 91]
+        data: []
       }]
     }
   },
   methods: {
     fillChart: function() {
-        console.log(filter.transactions);
-    }
+
+    },
+    getInsights: function() {
+            filter.fromDate = this.fromDate;
+            filter.toDate = this.toDate;
+            axios.get(route('insights.savings'), {
+                params: {
+                    fromDate: filter.fromDate,
+                    toDate: filter.toDate
+                }
+            })
+            .then(response => {
+                console.log(response);
+                this.series = [{
+                    name: 'series-1',
+                    data: response.data
+                }]
+            });
+        },
   }
 }
 </script>

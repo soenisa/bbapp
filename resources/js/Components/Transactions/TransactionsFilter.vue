@@ -60,7 +60,6 @@ export default {
         getTransactions: function() {
             filter.fromDate = this.fromDate;
             filter.toDate = this.toDate;
-            console.log('alksdjf');
             axios.get(route('transactions.index'), {
                         params: {
                             fromDate: filter.fromDate,
@@ -74,7 +73,6 @@ export default {
                         return a + parseFloat(b.amount);
                     }, 0);
                     this.total = this.total.toFixed(2);
-                    console.log(filter.transactions);
                 });
         },
         getCategories: function() {
