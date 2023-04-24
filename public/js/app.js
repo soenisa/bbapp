@@ -33202,10 +33202,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/Savings.vue?vue&type=script&lang=js":
-/*!*****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/Savings.vue?vue&type=script&lang=js ***!
-  \*****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=script&lang=js":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=script&lang=js ***!
+  \**********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -33216,25 +33216,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Transactions_filter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Transactions/filter.js */ "./resources/js/Components/Transactions/filter.js");
 /* harmony import */ var vue3_apexcharts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue3-apexcharts */ "./node_modules/vue3-apexcharts/dist/vue3-apexcharts.common.js");
 /* harmony import */ var vue3_apexcharts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue3_apexcharts__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Helpers_formatHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Helpers/formatHelper.js */ "./resources/js/Helpers/formatHelper.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Savings",
+  name: "InsightChart",
+  mixins: [_Helpers_formatHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  props: {
+    name: String,
+    insightType: String,
+    chartOptions: Object
+  },
   components: {
     VueApexCharts: (vue3_apexcharts__WEBPACK_IMPORTED_MODULE_1___default())
   },
   mounted: function mounted() {
-    this.getInsights();
+    this.getInsights(); // this.options = {
+    //   ...this.options,
+    //   ...this.chartOptions
+    // };
+
+    console.log(this.options);
   },
   data: function data() {
     return {
       options: {
-        // width: "100%",
         chart: {
-          id: 'vuechart-example'
+          id: 'vuechart-' + this.insightType,
+          height: 280
         },
         xaxis: {
           type: "datetime"
+        },
+        yaxis: {
+          labels: {
+            formatter: this.formatFunction
+          }
+        },
+        fill: {
+          type: "gradient",
+          gradient: {
+            type: "vertical",
+            shade: 'light',
+            // gradientToColors: 'blue',
+            // gradientFromColors: 'red',
+            shadeIntensity: 1,
+            opacityFrom: 0.7,
+            opacityTo: 0.9,
+            stops: [0, 90, 100]
+          }
         }
       },
       series: [{
@@ -33244,21 +33275,23 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    fillChart: function fillChart() {},
+    formatFunction: function formatFunction(value) {
+      return this.formatAmount(value);
+    },
     getInsights: function getInsights() {
       var _this = this;
 
       _Transactions_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.fromDate = this.fromDate;
       _Transactions_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.toDate = this.toDate;
-      axios.get(route('insights.savings'), {
+      axios.get(route('insights.' + this.insightType), {
         params: {
           fromDate: _Transactions_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.fromDate,
           toDate: _Transactions_filter_js__WEBPACK_IMPORTED_MODULE_0__.filter.toDate
         }
       }).then(function (response) {
-        console.log(response);
         _this.series = [{
           name: 'series-1',
+          type: 'area',
           data: response.data
         }];
       });
@@ -34182,10 +34215,22 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
+    var savingsOptions = {
+      fill: {
+        type: "gradient",
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.7,
+          opacityTo: 0.9,
+          stops: [0, 90, 100]
+        }
+      }
+    };
     var __returned__ = {
+      savingsOptions: savingsOptions,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
-      Savings: _Components_Insights_Charts__WEBPACK_IMPORTED_MODULE_2__.Savings,
+      InsightChart: _Components_Insights_Charts__WEBPACK_IMPORTED_MODULE_2__.InsightChart,
       TransactionsFilter: _Components_Transactions__WEBPACK_IMPORTED_MODULE_3__.TransactionsFilter
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -34456,10 +34501,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/Savings.vue?vue&type=template&id=c97fe090":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/Savings.vue?vue&type=template&id=c97fe090 ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=template&id=23905e37":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=template&id=23905e37 ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -34470,9 +34515,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _this = this;
+
+  var _component_CCardTitle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CCardTitle");
+
   var _component_VueApexCharts = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("VueApexCharts");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_VueApexCharts, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CCardTitle, null, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_this.name), 1
+      /* TEXT */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_VueApexCharts, {
     width: "500",
     type: "line",
     options: _ctx.options,
@@ -36011,7 +36069,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
           }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CCardBody, null, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TransactionsFilter"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Savings"])];
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TransactionsFilter"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["InsightChart"], {
+                name: "Savings",
+                "insight-type": "savings",
+                "chart-options": $setup.savingsOptions
+              }, null, 8
+              /* PROPS */
+              , ["chart-options"])];
             }),
             _: 1
             /* STABLE */
@@ -36653,9 +36717,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Savings": () => (/* reexport safe */ _Savings__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "InsightChart": () => (/* reexport safe */ _InsightChart__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _Savings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Savings */ "./resources/js/Components/Insights/Charts/Savings.vue");
+/* harmony import */ var _InsightChart__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InsightChart */ "./resources/js/Components/Insights/Charts/InsightChart.vue");
 
 
 
@@ -81620,10 +81684,10 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./resources/js/Components/Insights/Charts/Savings.vue":
-/*!*************************************************************!*\
-  !*** ./resources/js/Components/Insights/Charts/Savings.vue ***!
-  \*************************************************************/
+/***/ "./resources/js/Components/Insights/Charts/InsightChart.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/Components/Insights/Charts/InsightChart.vue ***!
+  \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -81631,15 +81695,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Savings_vue_vue_type_template_id_c97fe090__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Savings.vue?vue&type=template&id=c97fe090 */ "./resources/js/Components/Insights/Charts/Savings.vue?vue&type=template&id=c97fe090");
-/* harmony import */ var _Savings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Savings.vue?vue&type=script&lang=js */ "./resources/js/Components/Insights/Charts/Savings.vue?vue&type=script&lang=js");
+/* harmony import */ var _InsightChart_vue_vue_type_template_id_23905e37__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InsightChart.vue?vue&type=template&id=23905e37 */ "./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=template&id=23905e37");
+/* harmony import */ var _InsightChart_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InsightChart.vue?vue&type=script&lang=js */ "./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=script&lang=js");
 /* harmony import */ var _Users_senisa_prsnl_bbapp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_Users_senisa_prsnl_bbapp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Savings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Savings_vue_vue_type_template_id_c97fe090__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Components/Insights/Charts/Savings.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_senisa_prsnl_bbapp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_InsightChart_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_InsightChart_vue_vue_type_template_id_23905e37__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Components/Insights/Charts/InsightChart.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -82309,18 +82373,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Components/Insights/Charts/Savings.vue?vue&type=script&lang=js":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/Components/Insights/Charts/Savings.vue?vue&type=script&lang=js ***!
-  \*************************************************************************************/
+/***/ "./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=script&lang=js":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=script&lang=js ***!
+  \******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Savings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_InsightChart_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Savings_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Savings.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/Savings.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_InsightChart_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./InsightChart.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -82725,18 +82789,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Components/Insights/Charts/Savings.vue?vue&type=template&id=c97fe090":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/Components/Insights/Charts/Savings.vue?vue&type=template&id=c97fe090 ***!
-  \*******************************************************************************************/
+/***/ "./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=template&id=23905e37":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=template&id=23905e37 ***!
+  \************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Savings_vue_vue_type_template_id_c97fe090__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_InsightChart_vue_vue_type_template_id_23905e37__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Savings_vue_vue_type_template_id_c97fe090__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Savings.vue?vue&type=template&id=c97fe090 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/Savings.vue?vue&type=template&id=c97fe090");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_InsightChart_vue_vue_type_template_id_23905e37__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./InsightChart.vue?vue&type=template&id=23905e37 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Insights/Charts/InsightChart.vue?vue&type=template&id=23905e37");
 
 
 /***/ }),

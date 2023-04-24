@@ -8,20 +8,18 @@
                 <div class="flex flex-row justify-end gap-x-10">
                     <div>
                         <CFormLabel>Category</CFormLabel>
-                        <CFormSelect
-                        class="align-self-end"
-                        aria-label="Default select example"
-                        :options="categories"
-                        v-model="category">
+                        <CFormSelect class="align-self-end" aria-label="Default select example" :options="categories"
+                            v-model="category">
                         </CFormSelect>
                     </div>
                     <div>
                         <CFormLabel for="filterStartDate">Start Date</CFormLabel>
-                        <CFormInput type="date" id="filterStartDate" aria-describedby="filterStartDate" v-model="fromDate"/>
+                        <CFormInput type="date" id="filterStartDate" aria-describedby="filterStartDate"
+                            v-model="fromDate" />
                     </div>
                     <div>
                         <CFormLabel for="filterEndDate">End Date</CFormLabel>
-                        <CFormInput type="date" id="filterEndDate" aria-describedby="filterEndDate" v-model="toDate"/>
+                        <CFormInput type="date" id="filterEndDate" aria-describedby="filterEndDate" v-model="toDate" />
                     </div>
                     <CButton class="align-self-end" type="submit" color="primary" style="height: 38px;">Submit</CButton>
                 </div>
@@ -52,33 +50,33 @@ export default {
             filter,
         };
     },
-    mounted: function() {
+    mounted: function () {
         this.getCategories();
         this.getTransactions();
     },
     methods: {
-        getTransactions: function() {
+        getTransactions: function () {
             filter.fromDate = this.fromDate;
             filter.toDate = this.toDate;
             axios.get(route('transactions.index'), {
-                        params: {
-                            fromDate: filter.fromDate,
-                            toDate: filter.toDate,
-                            category: this.category == 'All' ? null  : this.category
-                        }
-                })
+                params: {
+                    fromDate: filter.fromDate,
+                    toDate: filter.toDate,
+                    category: this.category == 'All' ? null : this.category
+                }
+            })
                 .then(response => {
                     filter.transactions = response.data.data;
-                    this.total = filter.transactions.reduce( function(a, b){
+                    this.total = filter.transactions.reduce(function (a, b) {
                         return a + parseFloat(b.amount);
                     }, 0);
                     this.total = this.total.toFixed(2);
                 });
         },
-        getCategories: function() {
+        getCategories: function () {
             axios.get(route('categories.index'))
                 .then(response => {
-                    this.categories = [{ label: 'All', value: null}].concat(response.data);
+                    this.categories = [{ label: 'All', value: null }].concat(response.data);
                 });
         }
     }

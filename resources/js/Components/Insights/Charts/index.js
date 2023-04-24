@@ -1,5 +1,5 @@
-import Savings from './Savings'
+import InsightChart from './InsightChart'
 
 export {
-    Savings
+    InsightChart
 }

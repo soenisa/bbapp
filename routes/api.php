@@ -30,6 +30,7 @@ Route::prefix('transactions')
 Route::prefix('insights')
 ->group(function() {
     Route::get('savings', [InsightsController::class, 'savings'])->name('insights.savings');
+    Route::get('savingsPercent', [InsightsController::class, 'savingsPercent'])->name('insights.savings.percent');
 });
 
 // resource controllers
